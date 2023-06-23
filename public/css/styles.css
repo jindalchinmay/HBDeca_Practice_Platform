@@ -17,19 +17,34 @@ body {
 }
 
 .Logo {
-  height: 30%;
-  width: 30%;
+  height: 26%;
+  width: 26%;
   filter: grayscale(100%) brightness(40000%);
+  margin-top: 2%;
 }
 
 .typed-text {
+  margin-top: 0;
   display: inline-block;
+  color: white;
+  font-size: 200%;
+  font-weight: bolder;
+  font-family: 'Cabin', sans-serif;
 }
 
-.typed-cursor {
-  display: inline-block;
-  opacity: 1;
-  animation: blink-caret 0.7s infinite;
+.button-container { 
+  display: flex;
+}
+
+.left-button {
+  margin-right: 20px;
+  width: 100px;
+
+}
+
+.right-button { 
+  margin-left: 20px; 
+  width: 100px;
 }
 
 @keyframes blink-caret {
