@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Turner Fenton DECA</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+</head>
+
+<body>
+  <div class="body">
+    <img class="Logo" src="/decaLogo.png">
+
+    <h1>
+      <span class="typed-text"></span><span class="typed-cursor"></span>
+    </h1>
+
+    <form method="post" action="/login">
+      <button type="submit">Login</button>
+    </form>
+
+    <form method="post" action="/register">
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    var typed = new Typed('.typed-text', {
+      strings: ['WE ARE DECA'],
+      typeSpeed: 85,
+      startDelay: 1000,
+      showCursor: false,
+      loop: false
+    });
+  </script>
+</body>
+
+</html>
