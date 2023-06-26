@@ -1,4 +1,4 @@
-html {
+html, body {
   height: 100%;
 }
 
@@ -61,4 +61,40 @@ body {
   50% {
     opacity: 0;
   }
+}
+
+.sidebarDECA {
+  display: hidden !important;
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+
+
+.button-link {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  cursor: pointer;
+}
+
+.questionCard{
+  padding: 20px;
+  /* Add the following styles to move the section to the right */
+  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
