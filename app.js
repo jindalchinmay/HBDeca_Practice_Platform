@@ -26,17 +26,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://127.0.0.1:27017/TurnerFentonDECA') // Moved database connection code here
+mongoose.connect('mongodb://127.0.0.1:27017/TurnerFentonDECA')
   .then(() => {
     console.log("Connected to the database");
-    app.listen(port, () => console.log("Express server listening {port}."));
+    app.listen(port, () => console.log(`Express server listening ${port}.`));
   })
   .catch(err => console.error(err));
 
-
-
 const userSchema = new mongoose.Schema({
-  username: String, // Add unique: true to create an index
+  username: String,
   password: String,
   name: String,
   userProfile: JSON
@@ -54,9 +52,7 @@ const questionSchema = {
 const Question = mongoose.model("question", questionSchema);
 
 userSchema.plugin(passportLocalMongoose);
-
 const User = mongoose.model("user", userSchema);
-
 passport.use(User.createStrategy());
 
 passport.serializeUser(function (user, cb) {
@@ -71,25 +67,20 @@ passport.deserializeUser(function (user, cb) {
   });
 });
 
-
-
 app.get("/", (req, res) => {
   res.render("homePage", {});
 });
 
 app.post("/l", (req, res) => {
-
   res.redirect("/login");
 })
 
 app.post("/r", (req, res) => {
-
   res.redirect("/register");
 })
 
 app.get("/login", (req, res) => {
   if (req.isAuthenticated()) {
-    // User is already authenticated, redirect to success page
     return res.redirect("/landing-page");
   } else {
     res.render("login", {});
@@ -100,11 +91,9 @@ app.get("/register", (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect("/landing-page");
   } else { res.render("register", {}); }
-
 });
 
 app.get("/form", async (req, res) => {
-
   const foundUsers = (await User.find({ username: req.session.email }).exec()).length;
   console.log(foundUsers);
   if (req.session.email != null && !req.isAuthenticated() && foundUsers === 0) {
@@ -113,7 +102,6 @@ app.get("/form", async (req, res) => {
     res.redirect("/login");
   }
 });
-
 
 app.get("/information", (req, res) => {
   if (req.session.verified) {
@@ -129,12 +117,12 @@ app.get("/landing-page", async (req, res) => {
     'Cache-Control',
     'no-cache, private, no-store, must-revalidate, max-stal e=0, post-check=0, pre-check=0'
   );
+
   if (req.isAuthenticated()) {
     const userNamefromStorage = await User.find({ username: req.user.username }).exec();
     const clientname = getName(userNamefromStorage[0].name);
     res.render("landingpage", { username: clientname});
-  }
-  else {
+  } else {
     res.redirect("/login");
   }
 });
@@ -146,7 +134,6 @@ app.get("/questions", async (req,res) => {
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
   function checkIfNumberIsInArray(number, array){
     for(var i = 0; i < array.length; i++){
       if(array[i] == number){
@@ -157,10 +144,7 @@ app.get("/questions", async (req,res) => {
     return false
   }
 
-  var length = await Question.estimatedDocumentCount(); // Replace 100 with your desired maximum value
-  console.log(length)
-  //var randomNumber = getRandomNumber(1, x);
-
+  var length = await Question.estimatedDocumentCount();
   questions = await Question.find({}).exec();
 
   const populateQuestions = async () => {
@@ -180,10 +164,8 @@ app.get("/questions", async (req,res) => {
   };
 
   questionsToRender = await populateQuestions();
-
   await res.render("questions", { username: clientname, questions:questionsToRender});
 })
-
 
 app.post('/logout', function (req, res, next) {
   req.logout(function (err) {
@@ -191,8 +173,6 @@ app.post('/logout', function (req, res, next) {
     res.redirect('/');
   });
 });
-
-
 
 app.post("/register", async (req, res) => {
   var secret = speakeasy.generateSecret();
@@ -216,9 +196,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/form", (req, res) => {
-
   const userCode = req.body.code;
-
   const currentTime = Date.now();
   const expirationTime = req.session.keyExpiration;
 
@@ -227,34 +205,30 @@ app.post("/form", (req, res) => {
     console.log("key is null")
   }
 
-  console.log(userCode + "   " + req.session.key);
   if (userCode === req.session.key) {
     req.session.verified = true;
     req.session.key = null;
     res.redirect("/information")
-  }
-  else {
+  }else {
     req.session.secret = null;
     req.session.email = null;
     res.redirect("/register");
   }
 })
 
-
 app.post("/information", (req, res) => {
-
   console.log(req.body);
   const newUserProfile = {
-    questionsAttempted: 0, // Set the default value for questionsAttempted to 0
-    questionsCorrect: 0, // Set the default value for questionsCorrect to 0
-    questionsWrong: 0, // Set the default value for questionsWrong to 0
+    questionsAttempted: 0,
+    questionsCorrect: 0,
+    questionsWrong: 0,
   };
 
   User.register(
     {
       username: req.session.email,
       name: req.body.name,
-      userProfile: newUserProfile, // Assign the empty user profile to the newUserProfile field
+      userProfile: newUserProfile,
     },
     req.body.password,
     function (err, user) {
@@ -269,18 +243,12 @@ app.post("/information", (req, res) => {
       }
     }
   );
-
-
 })
 
 
 app.post("/login", (req, res, next) => {
-
-  // User is not authenticated, proceed with authentication
   passport.authenticate("local", {
     successRedirect: "/landing-page",
     failureRedirect: "/login",
   })(req, res, next);
 });
-
-
