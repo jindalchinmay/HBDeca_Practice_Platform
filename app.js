@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://127.0.0.1:27017/TurnerFentonDECA')
+mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority')
   .then(() => {
     console.log("Connected to the database");
     app.listen(port, () => console.log(`Express server listening ${port}.`));
