@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); //dotenv file
 const express = require("express");
 const bodyParser = require("body-parser");
 const { name } = require("ejs");
@@ -9,23 +9,26 @@ const hash = process.env.HASH;
 const mongoose = require('mongoose');
 const port = 5000;
 const app = express();
-const mailVerify = require('./send');
-const getName = require("./nameTruncator")
-const speakeasy = require('speakeasy');
+const mailVerify = require('./send'); //send google authentication
+const getName = require("./nameTruncator") //profile name simplifier
+const speakeasy = require('speakeasy'); //verification token
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('public')); //public directory for loading files
 
+//establish session
 app.use(session({
   secret: hash,
   resave: false,
   saveUninitialized: false
 }))
 
+//authenticate session
 app.use(passport.initialize());
 app.use(passport.session());
 
+//connect to database
 mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority')
   .then(() => {
     console.log("Connected to the database");
@@ -33,6 +36,7 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
   })
   .catch(err => console.error(err));
 
+//schema of user connected to database
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -40,6 +44,7 @@ const userSchema = new mongoose.Schema({
   userProfile: JSON
 });
 
+//schema of question
 const questionSchema = {
     Question: String,
     OptionOne: String,
@@ -128,6 +133,9 @@ app.get("/landing-page", async (req, res) => {
 });
 
 app.get("/questions", async (req,res) => {
+
+  if(req.isAuthenticated()){
+
   const userNamefromStorage = await User.find({ username: req.user.username }).exec();
   const clientname = getName(userNamefromStorage[0].name);
 
@@ -154,7 +162,7 @@ app.get("/questions", async (req,res) => {
       randomNumber = getRandomNumber(0, length - 1);
       var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
       while (numberChosen) {
-        randomNumber = getRandomNumber(1, length);
+        randomNumber = getRandomNumber(0, length-1);
         numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
       }
       chosen.push(randomNumber);
@@ -165,6 +173,9 @@ app.get("/questions", async (req,res) => {
 
   questionsToRender = await populateQuestions();
   await res.render("questions", { username: clientname, questions:questionsToRender});
+  } else{
+    res.redirect("/login");
+  }
 })
 
 app.post('/logout', function (req, res, next) {

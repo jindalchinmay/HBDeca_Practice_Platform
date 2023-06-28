@@ -25,71 +25,93 @@
   </head>
 
   <body>
-      <div
-        class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA"
-        style="width: 280px;">
-        <a href="/"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use
-              xlink:href="#bootstrap"></use></svg>
-          <span class="fs-4">Sidebar</span>
-        </a>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li>
-            <a href="/landing-page" class="nav-link text-white">
-              <svg class="bi me-2" width="16" height="16"><use
-                  xlink:href="#speedometer2"></use></svg>
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/questions" class="nav-link active" aria-current="page">
-              <svg class="bi me-2" width="16" height="16"><use
-                  xlink:href="#home"></use></svg>
-                  Questions
-            </a>
-          </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-          <a href="#"
-            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-            id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img
-              src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
-              alt width="32" height="32"
-              class="rounded-circle me-2">
-            <strong><%=username%></strong>
+    <div
+      class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA"
+      style="width: 280px;">
+      <a href="/"
+        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use
+            xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">Sidebar</span>
+      </a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li>
+          <a href="/landing-page" class="nav-link text-white">
+            <svg class="bi me-2" width="16" height="16"><use
+                xlink:href="#speedometer2"></use></svg>
+            Home
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-            <!-- Other dropdown items -->
-            <form method="post" action="/logout">
-              <button type="submit" class="button-link">Sign Out</button>
-            </form>
-          </ul>
-        </div>
+        </li>
+        <li class="nav-item">
+          <a href="/questions" class="nav-link active" aria-current="page">
+            <svg class="bi me-2" width="16" height="16"><use
+                xlink:href="#home"></use></svg>
+            Questions
+          </a>
+        </li>
+      </ul>
+      <hr>
+      <div class="dropdown">
+        <a href="#"
+          class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+          id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+            alt width="32" height="32"
+            class="rounded-circle me-2">
+          <strong><%=username%></strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+          aria-labelledby="dropdownUser1">
+          <!-- Other dropdown items -->
+          <form method="post" action="/logout">
+            <button type="submit" class="button-link">Sign Out</button>
+          </form>
+        </ul>
       </div>
+    </div>
 
+    <div class="test">
+      <form id="testForm">
 
-      <% for(var i = 0; i < 100; i++){ %>
+        <% for(var i = 0; i < 100; i++){ %>
 
         <div class="questionCard">
           <h6> <%= i+1 %>. <%=questions[i].Question %></h6>
 
-          <p>A. <%=questions[i].OptionOne %></p>
-          <p>B. <%=questions[i].OptionTwo %></p>
-          <p>C. <%=questions[i].OptionThree %></p>
-          <p>D. <%=questions[i].OptionFour %></p>
+          <label class="inline-label">
+            <input type="radio" name=<%=i%> value="A" required> <p>A. <%=questions[i].OptionOne
+              %></p>
+          </label>
+          <br>
+          <label class="inline-label">
+            <input type="radio" name=<%=i%> value="B" required> <p>B. <%=questions[i].OptionTwo
+              %></p>
+          </label>
+          <br>
+          <label class="inline-label">
+            <input type="radio" name=<%=i%> value="C" required> <p>C. <%=questions[i].OptionThree
+              %></p>
+          </label>
+          <br>
+          <label class="inline-label">
+            <input type="radio" name=<%=i%> value="D" required> <p>D. <%=questions[i].OptionFour
+              %></p>
+          </label>
+          <br>
 
         </div>
 
         <% } %>
 
-    </section
+        <button type="submit" class="testButton"> Submit</button>
 
+      </form>
+    </div>
     <script>
+
 
     </script>
   </body>

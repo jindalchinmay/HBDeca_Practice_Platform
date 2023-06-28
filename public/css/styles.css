@@ -98,3 +98,14 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.testButton{
+  margin-left:47%;
+  width: 6%;
+  margin-right: 47%;
+}
+
+.inline-label {
+  display: inline-flex;
+  align-items: center;
+}
