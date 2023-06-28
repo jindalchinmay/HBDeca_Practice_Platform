@@ -126,7 +126,9 @@ app.get("/landing-page", async (req, res) => {
   if (req.isAuthenticated()) {
     const userNamefromStorage = await User.find({ username: req.user.username }).exec();
     const clientname = getName(userNamefromStorage[0].name);
-    res.render("landingpage", { username: clientname});
+    const dataReceived = userNamefromStorage[0].userProfile;
+    
+    res.render("landingpage", { username: clientname, data: dataReceived});
   } else {
     res.redirect("/login");
   }

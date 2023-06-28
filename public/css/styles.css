@@ -77,6 +77,23 @@ body {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
+.pieGraph {
+  background-color:white;
+  height: 60%;
+  width: 60%;
+  float: right;
+  margin: 5%;
+  border-radius: 10px;
+  padding: 20px; 
+}
+
+.title {
+  display: flex; 
+  justify-content: center;
+  align-content: center;
+  font-family: 'Cabin', sans-serif;
+}
+
 
 
 .button-link {
