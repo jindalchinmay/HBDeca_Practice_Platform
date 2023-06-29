@@ -127,7 +127,7 @@ app.get("/landing-page", async (req, res) => {
     const userNamefromStorage = await User.find({ username: req.user.username }).exec();
     const clientname = getName(userNamefromStorage[0].name);
     const dataReceived = userNamefromStorage[0].userProfile;
-    
+
     res.render("landingpage", { username: clientname, data: dataReceived});
   } else {
     res.redirect("/login");
@@ -235,6 +235,8 @@ app.post("/information", (req, res) => {
     questionsAttempted: 0,
     questionsCorrect: 0,
     questionsWrong: 0,
+    pastScores: [],
+    wrongQuestions: []
   };
 
   User.register(
@@ -265,3 +267,71 @@ app.post("/login", (req, res, next) => {
     failureRedirect: "/login",
   })(req, res, next);
 });
+
+
+app.post("/questions", (req,res) =>{
+    const questionIdsArray = JSON.parse(req.body.questionIds);
+    const questionsAnswers = [];
+
+    function getUserAnswers(request){
+      var userAnswers = [];
+      for(var i = 0; i < 100; i++){
+        userAnswers.push(request['' + i])
+      }
+      return userAnswers;
+    }
+
+    function checkAnswers(userAnswers, questionsAnswers) {
+      var results = {
+        correct:0,
+        incorect:0
+      }
+
+      for(var k = 0; k  < 100; k++){
+        if(userAnswers[k] == questionsAnswers[k]){
+          results.correct++;
+        }else{
+          results.incorect++;
+        }
+      }
+      return results;
+    }
+
+    Promise.all(questionIdsArray.map((id) => {
+      return Question.findById(id, 'Answer').exec();
+    }))
+      .then((results) => {
+        results.forEach((question) => {
+          questionsAnswers.push(question.Answer);
+        });
+
+        const userAnswers = getUserAnswers(req.body);
+        var results = checkAnswers(userAnswers, questionsAnswers);
+
+        async function updateUserStats(results){
+          var user = await User.find({username:req.user.username}).exec()
+          var userProfileNew = user[0].userProfile;
+          userProfileNew.questionsCorrect += results.correct;
+          userProfileNew.questionsWrong += results.incorect;
+          userProfileNew.questionsAttempted += (results.correct + results.incorect)
+          await User.findOneAndUpdate({username: req.user.username}, {userProfile: userProfileNew})
+        }
+
+        updateUserStats(results)
+
+        const queryParams = new URLSearchParams({
+          questionIds: JSON.stringify(questionIdsArray),
+          userAnswers: JSON.stringify(userAnswers),
+          results: JSON.stringify(results)
+        });
+
+        res.redirect("/submit?" + queryParams.toString());
+
+      })
+      .catch((error) => {
+        console.error(error);
+        res.redirect("/landing-page")
+      });
+
+
+})

@@ -74,9 +74,9 @@
     </div>
 
     <div class="test">
-      <form id="testForm">
+      <form id="testForm" action="/questions" method="post">
 
-        <% for(var i = 0; i < 100; i++){ %>
+        <% for(var i = 0; i < 5; i++){ %>
 
         <div class="questionCard">
           <h6> <%= i+1 %>. <%=questions[i].Question %></h6>
@@ -106,12 +106,14 @@
 
         <% } %>
 
+        <% var questionIds = questions.map(function(question) { return question._id; }); %>
+        <input type="hidden" name="questionIds" value=<%= JSON.stringify(questionIds) %>>
         <button type="submit" class="testButton"> Submit</button>
 
       </form>
+
     </div>
     <script>
-
 
     </script>
   </body>
