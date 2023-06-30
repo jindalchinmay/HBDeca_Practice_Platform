@@ -12,6 +12,7 @@ const app = express();
 const mailVerify = require('./send'); //send google authentication
 const getName = require("./nameTruncator") //profile name simplifier
 const speakeasy = require('speakeasy'); //verification token
+const querystring = require('querystring');
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -180,6 +181,32 @@ app.get("/questions", async (req,res) => {
   }
 })
 
+app.get("/submit", async (req,res)=>{
+
+  if(req.isAuthenticated()){
+    questionsId = JSON.parse(req.query.questionIds);
+    userAnswers = JSON.parse(req.query.userAnswers)
+    res.send(questionsId)
+
+    const getQuestionsFromId = async () => {
+      questionsArray = [];
+
+      for(var i = 0; i < 100; i++){
+        const questionFromDatabase = await Question.find({_id:questionsId[i]}).exec();
+        await questionsArray.push(questionFromDatabase[0]);
+      }
+
+      return questionsArray;
+    }
+
+      const questionsArrayfromID = await getQuestionsFromId();
+
+      console.log(questionsArrayfromID);
+    } else {
+    res.redirect("/login");
+  }
+})
+
 app.post('/logout', function (req, res, next) {
   req.logout(function (err) {
     if (err) { return next(err); }
@@ -319,13 +346,13 @@ app.post("/questions", (req,res) =>{
 
         updateUserStats(results)
 
-        const queryParams = new URLSearchParams({
+        const queryParams = querystring.stringify({
           questionIds: JSON.stringify(questionIdsArray),
           userAnswers: JSON.stringify(userAnswers),
           results: JSON.stringify(results)
         });
 
-        res.redirect("/submit?" + queryParams.toString());
+        res.redirect("/submit?" + queryParams);
 
       })
       .catch((error) => {
