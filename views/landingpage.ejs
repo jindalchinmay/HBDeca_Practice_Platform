@@ -96,7 +96,6 @@
 <!------------------------------------ PIE CHART STARTS ----------------------------------->
 <container class="pieGraph">
   <h1 class="title">Statistics</h1>
-
   <form>
     <input class="Correct" type="hidden" value="<%=questionsCorrect%>">
     <input class="Incorrect" type="hidden" value="<%=questionsIncorrect%>">
@@ -108,6 +107,7 @@
     var incorrectInput = document.querySelector('.Incorrect');
     var correct = correctInput.value;
     var incorrect = incorrectInput.value;
+    var divya = 5; 
 
     const data = {
       labels: ['Correct', 'Incorrect'],
