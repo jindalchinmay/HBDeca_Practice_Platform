@@ -126,9 +126,11 @@ app.get("/landing-page", async (req, res) => {
   if (req.isAuthenticated()) {
     const userNamefromStorage = await User.find({ username: req.user.username }).exec();
     const clientname = getName(userNamefromStorage[0].name);
-    const dataReceived = userNamefromStorage[0].userProfile;
-    
-    res.render("landingpage", { username: clientname, data: dataReceived});
+    const questionsCorrect = userNamefromStorage[0].userProfile.questionsCorrect;
+    const questionsIncorrect = userNamefromStorage[0].userProfile.questionsWrong;
+    const totalQuestions = (questionsCorrect + questionsIncorrect); 
+
+    res.render("landingpage", { username: clientname, questionsCorrect: questionsCorrect, questionsIncorrect: questionsIncorrect, totalQuestions: totalQuestions});
   } else {
     res.redirect("/login");
   }

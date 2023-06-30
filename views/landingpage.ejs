@@ -12,12 +12,12 @@
       rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous">
-    <script
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="script.js"></script>
+      <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"></script>
-    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -77,45 +77,65 @@
       </div>
     </section>
 <!------------------------------------ SIDEBAR ENDS ----------------------------------->
+<!------------------------------------ Question Counter STARTS ----------------------------------->
+<div class="questionCounter">
+  <h6 class="headingForQuestionCounter">Number of Questions Answered: </h6>
+
+  <form>
+    <input class="totalQ" type="hidden" value="<%=totalQuestions%>">
+  </form>
+
+  <script>
+    var totalQuestionValue = document.querySelector('.totalQ');
+    var total = totalQuestionValue.value;
+    var headingElement = document.querySelector('.headingForQuestionCounter');
+    headingElement.innerHTML += ' ' + total;
+  </script>
+</div>
+<!------------------------------------ Question Counter ENDS ----------------------------------->
 <!------------------------------------ PIE CHART STARTS ----------------------------------->
-  <div id="best" class="pieGraph">
-      <h1 class="title">Statistics</h1>
-      <p class="Correct" style="display: none;"><%=data.questionsCorrect %></p>
-      <p class="Incorrect" style="display: none;"> <%=data.questionsWrong %></p>
+<container class="pieGraph">
+  <h1 class="title">Statistics</h1>
+
+  <form>
+    <input class="Correct" type="hidden" value="<%=questionsCorrect%>">
+    <input class="Incorrect" type="hidden" value="<%=questionsIncorrect%>">
+  </form>
+
+  <canvas id="doughnutChart"></canvas>
+  <script>
+    var correctInput = document.querySelector('.Correct');
+    var incorrectInput = document.querySelector('.Incorrect');
+    var correct = correctInput.value;
+    var incorrect = incorrectInput.value;
+
+    const data = {
+      labels: ['Correct', 'Incorrect'],
+      datasets: [{
+        data: [correct, incorrect],
+        backgroundColor: ['#36a2eb', '#ff6384'],
+        hoverBackgroundColor: ['#36a2eb', '#ff6384']
+      }]
+    };
+
+    const canvas = document.getElementById('doughnutChart');
+    const ctx = canvas.getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: data,
+      options: {
+        cutoutPercentage: 60,
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+
     
-    <script> 
-     anychart.onDocumentReady(function() {
-    
-     var correct = document.getElementsByClassName("Correct").innerHTML; 
-      var incorrect = document.getElementsByClassName("Incorrect").innerHTML;
-      var data = [
-        {x: "Correct", value: 10},
-        {x: "Incorrect", value: 20}
-    ];
+  </script>
+</div>
+<!------------------------------------ PIE CHART ENDS ----------------------------------->
 
-    var chart = anychart.pie();
-    
-    chart.title("My DECA Statistics");
-
-    chart.data(data);
-
-    chart.container('best');
-    chart.draw();
-
-});
-    </script>
-        
-
-  </div>
   
-
-
-
-
-
-    <script>
-
-    </script>
   </body>
 
 </html>
