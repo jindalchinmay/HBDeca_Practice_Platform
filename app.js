@@ -101,7 +101,7 @@ app.get("/register", (req, res) => {
 
 app.get("/form", async (req, res) => {
   const foundUsers = (await User.find({ username: req.session.email }).exec()).length;
-  console.log(foundUsers);
+  //console.log(foundUsers);
   if (req.session.email != null && !req.isAuthenticated() && foundUsers === 0) {
     res.render("form", { email: req.session.email });
   } else if (foundUsers != 0 && !req.isAuthenticated()) {
@@ -184,9 +184,12 @@ app.get("/questions", async (req,res) => {
 app.get("/submit", async (req,res)=>{
 
   if(req.isAuthenticated()){
+
+    const userNamefromStorage = await User.find({ username: req.user.username }).exec();
+    const clientname = getName(userNamefromStorage[0].name);
+
     questionsId = JSON.parse(req.query.questionIds);
-    userAnswers = JSON.parse(req.query.userAnswers)
-    res.send(questionsId)
+    userAnswers = JSON.parse(req.query.userAnswers);
 
     const getQuestionsFromId = async () => {
       questionsArray = [];
@@ -195,13 +198,38 @@ app.get("/submit", async (req,res)=>{
         const questionFromDatabase = await Question.find({_id:questionsId[i]}).exec();
         await questionsArray.push(questionFromDatabase[0]);
       }
-
       return questionsArray;
     }
 
-      const questionsArrayfromID = await getQuestionsFromId();
+    const questionsArrayfromID = await getQuestionsFromId();
 
-      console.log(questionsArrayfromID);
+    function getAnswers (){
+
+      var answersArrayfromID  = [];
+      for(var i = 0; i < 100; i++){
+        answersArrayfromID.push(questionsArrayfromID[i].Answer);
+      }
+      return answersArrayfromID
+    }
+
+    const answersArray = getAnswers();
+
+    function getTrueOrFalseAnswerArray(){
+      answerVerification = [];
+      for(var i = 0; i < 100; i++){
+        if(userAnswers[i] == answersArray[i]){
+          answerVerification.push(true);
+        } else{
+          answerVerification.push(false);
+        }
+      }
+      return answerVerification;
+    }
+
+    boolAnswers = getTrueOrFalseAnswerArray();
+
+    await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: boolAnswers});
+      //console.log(questionsArrayfromID);
     } else {
     res.redirect("/login");
   }
@@ -257,7 +285,7 @@ app.post("/form", (req, res) => {
 })
 
 app.post("/information", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const newUserProfile = {
     questionsAttempted: 0,
     questionsCorrect: 0,
@@ -311,7 +339,8 @@ app.post("/questions", (req,res) =>{
     function checkAnswers(userAnswers, questionsAnswers) {
       var results = {
         correct:0,
-        incorect:0
+        incorect:0,
+        wrongQuestions: []
       }
 
       for(var k = 0; k  < 100; k++){
@@ -319,6 +348,7 @@ app.post("/questions", (req,res) =>{
           results.correct++;
         }else{
           results.incorect++;
+          results.wrongQuestions.push(questionIdsArray[k])
         }
       }
       return results;
@@ -341,6 +371,11 @@ app.post("/questions", (req,res) =>{
           userProfileNew.questionsCorrect += results.correct;
           userProfileNew.questionsWrong += results.incorect;
           userProfileNew.questionsAttempted += (results.correct + results.incorect)
+          userProfileNew.pastScores.push(results.correct/100)
+          results.wrongQuestions.forEach((question) =>{
+            userProfileNew.wrongQuestions.push(question);
+          })
+          //console.log(userProfileNew)
           await User.findOneAndUpdate({username: req.user.username}, {userProfile: userProfileNew})
         }
 
@@ -360,5 +395,8 @@ app.post("/questions", (req,res) =>{
         res.redirect("/landing-page")
       });
 
+})
 
+app.post("/done", (req,res)=>{
+  res.redirect("/landing-page");
 })

@@ -84,17 +84,15 @@ body {
   float: right;
   margin: 5%;
   border-radius: 10px;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .title {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-content: center;
   font-family: 'Cabin', sans-serif;
 }
-
-
 
 .button-link {
   display: inline-block;
@@ -125,4 +123,28 @@ body {
 .inline-label {
   display: inline-flex;
   align-items: center;
+}
+
+.red {
+  background-color: rgba(225, 0, 0, 0.5);
+}
+
+.green {
+  background-color: rgba(0, 128, 0, 0.5);
+}
+
+.H{
+  display: none;
+}
+
+.dropdownToggle {
+  all: unset;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+.dropdownArrow{
+  height: 50px;
+  width: 50px;
 }
