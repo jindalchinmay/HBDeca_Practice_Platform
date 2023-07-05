@@ -77,36 +77,66 @@ body {
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
 
+/* ---------------------------------------PIE GRAPH STARTS -------------------------------------------------- */
 .pieGraph {
   background-color:white;
-  height: 65%;
+  height: 70%;
   width: 60%;
   float: right;
-  margin: 5%;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
   border-radius: 10px;
 }
 
-.title {
+#doughnutChart{
+  padding: 3%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.landingpageTitle {
+  padding: 3%;
+  padding-bottom: 0%;
   display: flex; 
   justify-content: center;
   align-content: center;
   font-family: 'Cabin', sans-serif;
 }
 
+/* ---------------------------------------PIE GRAPH ENDS -------------------------------------------------- */
+
+/* ---------------------------------------Question Counter STARTS -------------------------------------------------- */
 .questionCounter {
   height: 10%; 
   width: 60%;
   float: right;
   background-color:white; 
   margin: 5%;
+  margin-bottom: 0%;
   border-radius: 10px;
 }
 
 .headingForQuestionCounter {
-  
-  font-family: 'Cabin', sans-serif
+  font-family: 'Cabin', sans-serif; 
+  padding: 2%;
 }
+/* ---------------------------------------Question Counter ENDS-------------------------------------------------- */
 
+
+/* <!------------------------------------ RANDOM INCORRECT Q GENERATOR STARTS -----------------------------------> */
+   .incorrectQuestionGenerator { 
+    padding: 20px;
+    margin-right: 5%; /* Adjust this value based on the width of the sidebar */
+    background-color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: auto;
+    width: auto;
+   }
+
+    /* <!------------------------------------ RANDOM INCORRECT Q GENERATOR ENDS ----------------------------------- */
 .button-link {
   display: inline-block;
   background: none;
