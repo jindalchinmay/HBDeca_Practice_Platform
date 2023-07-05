@@ -1,5 +1,4 @@
 import pymongo
-import PyPDF2
 import os
 from dotenv import load_dotenv
 from pdfText import pdfExtractor
