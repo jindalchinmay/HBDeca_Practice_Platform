@@ -205,32 +205,20 @@ app.get("/submit", async (req,res)=>{
 
     const questionsArrayfromID = await getQuestionsFromId();
 
-    function getAnswers (){
-
-      var answersArrayfromID  = [];
-      for(var i = 0; i < 100; i++){
-        answersArrayfromID.push(questionsArrayfromID[i].Answer);
-      }
-      return answersArrayfromID
-    }
-
-    const answersArray = getAnswers();
-
-    function getTrueOrFalseAnswerArray(){
-      answerVerification = [];
-      for(var i = 0; i < 100; i++){
-        if(userAnswers[i] == answersArray[i]){
-          answerVerification.push(true);
-        } else{
-          answerVerification.push(false);
-        }
-      }
-      return answerVerification;
-    }
-
-    boolAnswers = getTrueOrFalseAnswerArray();
-
-    await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: boolAnswers});
+    // function getTrueOrFalseAnswerArray(){
+    //   answerVerification = [];
+    //   for(var i = 0; i < 100; i++){
+    //     if(userAnswers[i] == answersArray[i]){
+    //       answerVerification.push(true);
+    //     } else{
+    //       answerVerification.push(false);
+    //     }
+    //   }
+    //   return answerVerification;
+    // }
+    // boolAnswers = getTrueOrFalseAnswerArray();
+    // console.log(boolAnswers);
+    await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: userAnswers});
       //console.log(questionsArrayfromID);
     } else {
     res.redirect("/login");
