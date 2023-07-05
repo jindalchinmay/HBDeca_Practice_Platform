@@ -74,48 +74,77 @@
     </div>
 
     <div class="test">
-      <form id="testForm" action="/questions" method="post">
+      <form id="testForm" action="/done" method="post">
 
-        <% for(var i = 0; i < 5; i++){ %>
+        <% for(var i = 0; i < 100; i++){ %>
 
         <div class="questionCard">
-          <h6> <%= i+1 %>. <%=questions[i].Question %></h6>
 
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;"name=<%=i%> value="A" required> <p>A. <%=questions[i].OptionOne
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="B" required> <p>B. <%=questions[i].OptionTwo
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="C" required> <p>C. <%=questions[i].OptionThree
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="D" required> <p>D. <%=questions[i].OptionFour
-              %></p>
-          </label>
-          <br>
+          <% if(answers[i]) { %>
+          <h6 class="green"> <%= i+1 %>. <%=questions[i].Question %></h6>
+          <% } else{ %>
+          <h6 class="red"> <%= i+1 %>. <%=questions[i].Question %></h6>
+          <% } %>
 
+          <button class="dropdownToggle" type="button">
+            <img class="dropdownArrow" src="./drop-down-arrow.png">
+          </button>
+          <div class="H optionToChose<%=i%>">
+            <label class="inline-label">
+              <input type="radio"
+                style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%>
+              value="A" required checked> <p>A. <%=questions[i].OptionOne
+                %></p>
+            </label>
+            <br>
+          </div>
+          <div class="H optionToChose<%=i%>">
+            <label class="inline-label">
+              <input type="radio"
+                style="margin-bottom: 13px; margin-right: 5px;"
+                name=<%=i%> value="B" required> <p>B. <%=questions[i].OptionTwo
+                %></p>
+            </label>
+            <br>
+          </div>
+          <div class="H optionToChose<%=i%>">
+            <label class="inline-label">
+              <input type="radio"
+                style="margin-bottom: 13px; margin-right: 5px;"
+                name=<%=i%> value="C" required> <p>C. <%=questions[i].OptionThree
+                %></p>
+            </label>
+            <br>
+          </div>
+          <div class="H optionToChose<%=i%>">
+            <label class="inline-label">
+              <input type="radio"
+                style="margin-bottom: 13px; margin-right: 5px;"
+                name=<%=i%> value="D" required> <p>D. <%=questions[i].OptionFour
+                %></p>
+            </label>
+            <br>
+          </div>
         </div>
-
         <% } %>
-
-        <% var questionIds = questions.map(function(question) { return question._id; }); %>
-        <input type="hidden" name="questionIds" value=<%= JSON.stringify(questionIds) %>>
-        <button type="submit" class="testButton"> Submit</button>
-
+        <button type="submit" class="testButton"> Home </button>
       </form>
 
     </div>
     <script>
+      const elements = document.getElementsByClassName('dropdownToggle');
 
+      for (let i = 0; i < 100; i++) {
+        elements[i].addEventListener('click', () => {
+          console.log("hi")
+          const buttons = Array.from(document.getElementsByClassName('optionToChose' + i));
+          buttons.forEach(e => {
+            e.classList.toggle('H');
+          });
+        });
+      }
     </script>
+
   </body>
 
 </html>

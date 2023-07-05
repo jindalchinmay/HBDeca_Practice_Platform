@@ -12,6 +12,7 @@ const app = express();
 const mailVerify = require('./send'); //send google authentication
 const getName = require("./nameTruncator") //profile name simplifier
 const speakeasy = require('speakeasy'); //verification token
+const querystring = require('querystring');
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -100,7 +101,7 @@ app.get("/register", (req, res) => {
 
 app.get("/form", async (req, res) => {
   const foundUsers = (await User.find({ username: req.session.email }).exec()).length;
-  console.log(foundUsers);
+  //console.log(foundUsers);
   if (req.session.email != null && !req.isAuthenticated() && foundUsers === 0) {
     res.render("form", { email: req.session.email });
   } else if (foundUsers != 0 && !req.isAuthenticated()) {
@@ -128,7 +129,7 @@ app.get("/landing-page", async (req, res) => {
     const clientname = getName(userNamefromStorage[0].name);
     const questionsCorrect = userNamefromStorage[0].userProfile.questionsCorrect;
     const questionsIncorrect = userNamefromStorage[0].userProfile.questionsWrong;
-    const totalQuestions = (questionsCorrect + questionsIncorrect); 
+    const totalQuestions = (questionsCorrect + questionsIncorrect);
 
     res.render("landingpage", { username: clientname, questionsCorrect: questionsCorrect, questionsIncorrect: questionsIncorrect, totalQuestions: totalQuestions});
   } else {
@@ -178,6 +179,60 @@ app.get("/questions", async (req,res) => {
   questionsToRender = await populateQuestions();
   await res.render("questions", { username: clientname, questions:questionsToRender});
   } else{
+    res.redirect("/login");
+  }
+})
+
+app.get("/submit", async (req,res)=>{
+
+  if(req.isAuthenticated()){
+
+    const userNamefromStorage = await User.find({ username: req.user.username }).exec();
+    const clientname = getName(userNamefromStorage[0].name);
+
+    questionsId = JSON.parse(req.query.questionIds);
+    userAnswers = JSON.parse(req.query.userAnswers);
+
+    const getQuestionsFromId = async () => {
+      questionsArray = [];
+
+      for(var i = 0; i < 100; i++){
+        const questionFromDatabase = await Question.find({_id:questionsId[i]}).exec();
+        await questionsArray.push(questionFromDatabase[0]);
+      }
+      return questionsArray;
+    }
+
+    const questionsArrayfromID = await getQuestionsFromId();
+
+    function getAnswers (){
+
+      var answersArrayfromID  = [];
+      for(var i = 0; i < 100; i++){
+        answersArrayfromID.push(questionsArrayfromID[i].Answer);
+      }
+      return answersArrayfromID
+    }
+
+    const answersArray = getAnswers();
+
+    function getTrueOrFalseAnswerArray(){
+      answerVerification = [];
+      for(var i = 0; i < 100; i++){
+        if(userAnswers[i] == answersArray[i]){
+          answerVerification.push(true);
+        } else{
+          answerVerification.push(false);
+        }
+      }
+      return answerVerification;
+    }
+
+    boolAnswers = getTrueOrFalseAnswerArray();
+
+    await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: boolAnswers});
+      //console.log(questionsArrayfromID);
+    } else {
     res.redirect("/login");
   }
 })
@@ -232,11 +287,13 @@ app.post("/form", (req, res) => {
 })
 
 app.post("/information", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const newUserProfile = {
     questionsAttempted: 0,
     questionsCorrect: 0,
     questionsWrong: 0,
+    pastScores: [],
+    wrongQuestions: []
   };
 
   User.register(
@@ -267,3 +324,81 @@ app.post("/login", (req, res, next) => {
     failureRedirect: "/login",
   })(req, res, next);
 });
+
+
+app.post("/questions", (req,res) =>{
+    const questionIdsArray = JSON.parse(req.body.questionIds);
+    const questionsAnswers = [];
+
+    function getUserAnswers(request){
+      var userAnswers = [];
+      for(var i = 0; i < 100; i++){
+        userAnswers.push(request['' + i])
+      }
+      return userAnswers;
+    }
+
+    function checkAnswers(userAnswers, questionsAnswers) {
+      var results = {
+        correct:0,
+        incorect:0,
+        wrongQuestions: []
+      }
+
+      for(var k = 0; k  < 100; k++){
+        if(userAnswers[k] == questionsAnswers[k]){
+          results.correct++;
+        }else{
+          results.incorect++;
+          results.wrongQuestions.push(questionIdsArray[k])
+        }
+      }
+      return results;
+    }
+
+    Promise.all(questionIdsArray.map((id) => {
+      return Question.findById(id, 'Answer').exec();
+    }))
+      .then((results) => {
+        results.forEach((question) => {
+          questionsAnswers.push(question.Answer);
+        });
+
+        const userAnswers = getUserAnswers(req.body);
+        var results = checkAnswers(userAnswers, questionsAnswers);
+
+        async function updateUserStats(results){
+          var user = await User.find({username:req.user.username}).exec()
+          var userProfileNew = user[0].userProfile;
+          userProfileNew.questionsCorrect += results.correct;
+          userProfileNew.questionsWrong += results.incorect;
+          userProfileNew.questionsAttempted += (results.correct + results.incorect)
+          userProfileNew.pastScores.push(results.correct/100)
+          results.wrongQuestions.forEach((question) =>{
+            userProfileNew.wrongQuestions.push(question);
+          })
+          //console.log(userProfileNew)
+          await User.findOneAndUpdate({username: req.user.username}, {userProfile: userProfileNew})
+        }
+
+        updateUserStats(results)
+
+        const queryParams = querystring.stringify({
+          questionIds: JSON.stringify(questionIdsArray),
+          userAnswers: JSON.stringify(userAnswers),
+          results: JSON.stringify(results)
+        });
+
+        res.redirect("/submit?" + queryParams);
+
+      })
+      .catch((error) => {
+        console.error(error);
+        res.redirect("/landing-page")
+      });
+
+})
+
+app.post("/done", (req,res)=>{
+  res.redirect("/landing-page");
+})

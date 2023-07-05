@@ -96,9 +96,7 @@ body {
   border-radius: 10px;
 }
 
-.landingpageTitle {
-  padding: 3%;
-  padding-bottom: 0%;
+.title {
   display: flex; 
   justify-content: center;
   align-content: center;
@@ -107,12 +105,12 @@ body {
 
 /* ---------------------------------------PIE GRAPH ENDS -------------------------------------------------- */
 
-/* ---------------------------------------Question Counter STARTS -------------------------------------------------- */
+/* --------------------------------------Question Counter STARTS -------------------------------------------------- */
 .questionCounter {
-  height: 10%; 
+  height: 10%;
   width: 60%;
   float: right;
-  background-color:white; 
+  background-color:white;
   margin: 5%;
   margin-bottom: 0%;
   border-radius: 10px;
@@ -135,6 +133,147 @@ body {
     height: auto;
     width: auto;
    }
+
+    /* <!
+    ------------------------------------ RANDOM INCORRECT Q GENERATOR ENDS ----------------------------------- */
+.button-link {
+  display: inline-block;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: white;
+  cursor: pointer;
+}
+
+.questionCard{
+  padding: 20px;
+  /* Add the following styles to move the section to the right */
+  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.testButton{
+  margin-left:47%;
+  width: 6%;
+  margin-right: 47%;
+}
+
+.inline-label {
+  display: inline-flex;
+  align-items: center;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: linear-gradient(to bottom, rgba(35, 58, 103, 1) 25%, rgba(73, 100, 151, 1) 75%);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Logo {
+  height: 26%;
+  width: 26%;
+  filter: grayscale(100%) brightness(40000%);
+  margin-top: 2%;
+  margin-bottom: 1%;
+  animation: rotate 13s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.typed-text {
+  display: inline-block;
+  color: white;
+  font-size: 200%;
+  font-weight: bolder;
+  font-family: 'Cabin', sans-serif;
+}
+
+.button-container {
+  display: flex;
+}
+
+.left-button {
+  margin-right: 20px;
+  width: 100px;
+
+}
+
+.right-button {
+  margin-left: 20px;
+  width: 100px;
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.sidebarDECA {
+  display: hidden !important;
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* ---------------------------------------PIE GRAPH STARTS -------------------------------------------------- */
+.pieGraph {
+  background-color:white;
+  height: 70%;
+  width: 60%;
+  float: right;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 2%;
+  border-radius: 10px;
+}
+
+#doughnutChart{
+  padding: 3%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+.landingpageTitle {
+  padding: 3%;
+  padding-bottom: 0%;
+  display: flex; 
+  justify-content: center;
+  align-content: center;
+  font-family: 'Cabin', sans-serif;
+}
 
     /* <!------------------------------------ RANDOM INCORRECT Q GENERATOR ENDS ----------------------------------- */
 .button-link {
@@ -166,4 +305,28 @@ body {
 .inline-label {
   display: inline-flex;
   align-items: center;
+}
+
+.red {
+  background-color: rgba(225, 0, 0, 0.5);
+}
+
+.green {
+  background-color: rgba(0, 128, 0, 0.5);
+}
+
+.H{
+  display: none;
+}
+
+.dropdownToggle {
+  all: unset;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+
+.dropdownArrow{
+  height: 50px;
+  width: 50px;
 }
