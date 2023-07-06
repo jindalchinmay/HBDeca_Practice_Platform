@@ -21,9 +21,8 @@
 
 </head>
 
-<!------------------------------------ SIDEBAR STARTS ----------------------------------->
-
 <body>
+  <!-- ---------------------------------- SIDEBAR STARTS ----------------------------------->
   <section>
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -72,75 +71,85 @@
       </div>
     </div>
   </section>
-  <!------------------------------------ SIDEBAR ENDS ----------------------------------->
-  <!------------------------------------ Question Counter STARTS ----------------------------------->
-  <div class="questionCounter">
-    <h6 class="headingForQuestionCounter">Number of Questions Answered: </h6>
+  <!------------------------------------ SIDEBAR ENDS --------------------------------- -->
 
-    <form>
-      <input class="totalQ" type="hidden" value="<%=totalQuestions%>">
-    </form>
+  <!------------------------------------ TITLEBAR STARTS ----------------------------------->
+  <h1 class="landingPageTitle"> TURNER FENTON DECA</h1>
+  <!------------------------------------ TITLEBAR ENDS ----------------------------------->
 
-    <script>
-      var totalQuestionValue = document.querySelector('.totalQ');
-      var total = totalQuestionValue.value;
-      var headingElement = document.querySelector('.headingForQuestionCounter');
-      headingElement.innerHTML += ' ' + total;
-    </script>
-  </div>
-  <!------------------------------------ Question Counter ENDS ----------------------------------->
-  <!------------------------------------ DOUGHNUT CHART STARTS ----------------------------------->
-  <container class="pieGraph">
-    <h1 class="landingpageTitle">Statistics</h1>
-    <form>
-      <input class="Correct" type="hidden" value="<%=questionsCorrect%>">
-      <input class="Incorrect" type="hidden" value="<%=questionsIncorrect%>">
-    </form>
-
-    <canvas id="doughnutChart"></canvas>
-    <script>
-      var correctInput = document.querySelector('.Correct');
-      var incorrectInput = document.querySelector('.Incorrect');
-      var correct = correctInput.value;
-      var incorrect = incorrectInput.value;
-      var divya = 5;
-
-      const data = {
-        labels: ['Correct', 'Incorrect'],
-        datasets: [{
-          data: [correct, incorrect],
-          backgroundColor: ['#36a2eb', '#ff6384'],
-          hoverBackgroundColor: ['#36a2eb', '#ff6384']
-        }]
-      };
-
-      const canvas = document.getElementById('doughnutChart');
-      const ctx = canvas.getContext('2d');
-      new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: {
-          cutoutPercentage: 60,
-          responsive: true,
-          maintainAspectRatio: false
-        }
-      });
-    </script>
+  <!------------------------------------ Announcement STARTS ----------------------------------->
+  <section>
+    <div class="announcementDiv">
+      <h1 class="annoucementTitle">Annoucements</h1>
     </div>
-    <!------------------------------------ PIE CHART ENDS ----------------------------------->
+  </section>
+  <!------------------------------------ Announcement ENDS ----------------------------------->
 
+    <!------------------------------------ MAIN CONTENT STARTS ----------------------------------->
+  <section class="mainContentContainer">
+    <div class="incorrectQuestionGenerator">
+      <h1>Incorrect Question</h1>
+    </div>
 
-    <!------------------------------------ RANDOM INCORRECT Q GENERATOR STARTS ----------------------------------->
-    <section> 
-      <div class="incorrectQuestionGenerator">
-
-
-
-
+     <!------------------------- GRAPH STARTS ---------------------------> 
+    <div class="pieGraph">
+      <div class="container2">
+        <h1 class="statisticsTitle">Statistics</h1>
+        <form>
+          <input class="Correct" type="hidden" value="<%=questionsCorrect%>">
+          <input class="Incorrect" type="hidden" value="<%=questionsIncorrect%>">
+        </form>
+        <canvas id="doughnutChart"></canvas>
       </div>
-    </section>
+        <script>
+          var correctInput = document.querySelector('.Correct');
+          var incorrectInput = document.querySelector('.Incorrect');
+          var correct = correctInput.value;
+          var incorrect = incorrectInput.value;
 
-    <!------------------------------------ RANDOM INCORRECT Q GENERATOR ENDS ----------------------------------->
+          const data = {
+            labels: ['Correct', 'Incorrect'],
+            datasets: [{
+              data: [correct, incorrect],
+              backgroundColor: ['#36a2eb', '#ff6384'],
+              hoverBackgroundColor: ['#36a2eb', '#ff6384']
+            }]
+          };
+
+          const canvas = document.getElementById('doughnutChart');
+          const ctx = canvas.getContext('2d');
+          new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+              cutoutPercentage: 60,
+              responsive: true,
+              maintainAspectRatio: true
+            }
+          });
+        </script>
+    </div>
+    <!------------------------- GRAPH ENDS ---------------------------> 
+    
+    <!------------------------------------ Question Counter STARTS ----------------------------------->
+  </section>
+    <div class="questionCounter">
+        <h6 class="headingForQuestionCounter">Number of Questions Answered: </h6>
+
+        <form>
+          <input class="totalQ" type="hidden" value="<%=totalQuestions%>">
+        </form>
+
+        <script>
+          var totalQuestionValue = document.querySelector('.totalQ');
+          var total = totalQuestionValue.value;
+          var headingElement = document.querySelector('.headingForQuestionCounter');
+          headingElement.innerHTML += ' ' + total;
+        </script> 
+   </div>   
+  <!------------------------------------ Question Counter ENDS ----------------------------------->
+
+    <!------------------------------------ MAIN CONTENT ENDS ----------------------------------->
 
 
 
