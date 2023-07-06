@@ -46,15 +46,71 @@ body {
   display: flex;
 }
 
-.left-button {
-  margin-right: 20px;
-  width: 100px;
-
+.button-wrapper {
+  display: inline-block;
+  position: relative;
+  margin-top: 45px;
 }
+.Get-started {
+  position: relative;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 30px; /* Adjust the value to control the roundness */
+  font-size: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+.Get-started:hover {
+  transform: scale(1.15); /* Increase the size on hover */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+.Get-started:active {
+  transform: scale(0.95); /* Decrease the size when clicked */
+}
+.Get-started:hover .ripple,
+.ripple:hover {
+  animation-play-state: paused; /* Pause the ripple animation on hover */
+}
+.ripple {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  border-radius: 30px; /* Match the button's border-radius value */
+  pointer-events: none;
+}
+.ripple1 {
+  background-color: white;
+  animation: ripple-animation 3s infinite ease-in-out;
 
-.right-button {
-  margin-left: 20px;
-  width: 100px;
+  animation-delay: 1s;
+}
+.ripple2 {
+  background-color: white;
+  animation: ripple-animation 3s infinite ease-in-out;
+  animation-delay: 2s;
+}
+.ripple3 {
+  background-color: white;
+  animation: ripple-animation 3s infinite ease-in-out;
+  animation-delay: 2.5s;
+}
+@keyframes ripple-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 @keyframes blink-caret {
@@ -97,7 +153,7 @@ body {
 }
 
 .title {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-content: center;
   font-family: 'Cabin', sans-serif;
@@ -117,14 +173,14 @@ body {
 }
 
 .headingForQuestionCounter {
-  font-family: 'Cabin', sans-serif; 
+  font-family: 'Cabin', sans-serif;
   padding: 2%;
 }
 /* ---------------------------------------Question Counter ENDS-------------------------------------------------- */
 
 
 /* <!------------------------------------ RANDOM INCORRECT Q GENERATOR STARTS -----------------------------------> */
-   .incorrectQuestionGenerator { 
+   .incorrectQuestionGenerator {
     padding: 20px;
     margin-right: 5%; /* Adjust this value based on the width of the sidebar */
     background-color: white;
@@ -147,13 +203,13 @@ body {
   cursor: pointer;
 }
 
-.questionCard{
+.questionCard {
   padding: 20px;
-  /* Add the following styles to move the section to the right */
-  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
+  margin-left: 300px;
   background-color: white;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 .testButton{
@@ -269,7 +325,7 @@ body {
 .landingpageTitle {
   padding: 3%;
   padding-bottom: 0%;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-content: center;
   font-family: 'Cabin', sans-serif;
