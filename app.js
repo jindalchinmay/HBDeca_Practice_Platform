@@ -49,8 +49,15 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
     OptionThree: String,
     OptionFour: String,
     Answer: String
-}
-const Question = mongoose.model("question", questionSchema);
+  }
+
+
+  const BAQuestion = mongoose.model("BAQuestion", questionSchema);
+  const EntrepreneurshipQuestion = mongoose.model("EntrepreneurshipQuestion", questionSchema);
+  const FinanceQuestion = mongoose.model("FinanceQuestion", questionSchema);
+  const HospitalityQuestion = mongoose.model("HospitalityQuestion", questionSchema);
+  const MarketingQuestion = mongoose.model("MarketingQuestion", questionSchema);
+
 
   passport.use(
     new GoogleStrategy(
@@ -157,45 +164,39 @@ const Question = mongoose.model("question", questionSchema);
     }
   });
 
-  app.get("/questions", async (req,res) => {
+  app.get("/choice", async (req,res) => {
 
     if(req.isAuthenticated()){
 
-      const clientname = req.user.username;
-      function getRandomNumber(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
+    const clientname = req.user.username;
+    res.render("clusters", {username: getName(clientname)})
+    } else{
+      res.redirect("/login");
+    }
+  })
 
-      function checkIfNumberIsInArray(number, array){
-        for(var i = 0; i < array.length; i++){
-          if(array[i] == number){
-            return true;
-          }
+  app.get("/questions", async (req,res)=>{
+
+    if(req.isAuthenticated()){
+
+      const numberofQuestions = JSON.parse(req.query.number)
+      const clientname = getName(req.user.username);
+      const questionsId = JSON.parse(req.query.questionIds);
+      const db = JSON.parse(req.query.db);
+
+      const getQuestionsFromId = async () => {
+        questionsArray = [];
+        for(var i = 0; i < numberofQuestions; i++){
+          const questionFromDatabase = await mongoose.model(db).find({_id:questionsId[i]}).exec();
+          await questionsArray.push(questionFromDatabase[0]);
         }
-        return false
+        return questionsArray;
       }
+      const questionsArrayfromID = await getQuestionsFromId();
 
-    var length = await Question.estimatedDocumentCount();
-    questions = await Question.find({}).exec();
+      res.render("questions",
+      {username: clientname, questions: questionsArrayfromID, number:numberofQuestions, cluster:db})
 
-    const populateQuestions = async () => {
-      const hundredQuestions = [];
-      chosen = [];
-      for (var i = 0; i < 100; i++) {
-        randomNumber = getRandomNumber(0, length - 1);
-        var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-        while (numberChosen) {
-          randomNumber = getRandomNumber(0, length-1);
-          numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-        }
-        chosen.push(randomNumber);
-        hundredQuestions.push(questions[randomNumber]);
-      }
-      return hundredQuestions;
-    };
-
-    questionsToRender = await populateQuestions();
-    await res.render("questions", { username: getName(clientname), questions:questionsToRender});
     } else{
       res.redirect("/login");
     }
@@ -210,19 +211,22 @@ const Question = mongoose.model("question", questionSchema);
 
       questionsId = JSON.parse(req.query.questionIds);
       userAnswers = JSON.parse(req.query.userAnswers);
+      number = JSON.parse(req.query.number);
+      db = JSON.parse(req.query.db);
+
 
       const getQuestionsFromId = async () => {
         questionsArray = [];
 
-        for(var i = 0; i < 100; i++){
-          const questionFromDatabase = await Question.find({_id:questionsId[i]}).exec();
+        for(var i = 0; i < number; i++){
+          const questionFromDatabase = await mongoose.model(db).find({_id:questionsId[i]}).exec();
           await questionsArray.push(questionFromDatabase[0]);
         }
         return questionsArray;
       }
       const questionsArrayfromID = await getQuestionsFromId();
 
-      await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: userAnswers});
+      await res.render("submit", { username: clientname, questions:questionsArrayfromID, answers: userAnswers, number: number});
 
       } else {
       res.redirect("/login");
@@ -236,18 +240,19 @@ const Question = mongoose.model("question", questionSchema);
   });
 
   app.post("/l", (req,res)=>{
-
     res.redirect("/login")
   })
 
 
   app.post("/questions", (req,res) =>{
     const questionIdsArray = JSON.parse(req.body.questionIds);
+    number = JSON.parse(req.body.number);
+    db = JSON.parse(req.body.cluster);
     const questionsAnswers = [];
 
     function getUserAnswers(request){
       var userAnswers = [];
-      for(var i = 0; i < 100; i++){
+      for(var i = 0; i < number; i++){
         userAnswers.push(request['' + i])
       }
       return userAnswers;
@@ -260,7 +265,7 @@ const Question = mongoose.model("question", questionSchema);
         wrongQuestions: []
       }
 
-      for(var k = 0; k  < 100; k++){
+      for(var k = 0; k  < number; k++){
         if(userAnswers[k] == questionsAnswers[k]){
           results.correct++;
         }else{
@@ -272,7 +277,7 @@ const Question = mongoose.model("question", questionSchema);
     }
 
     Promise.all(questionIdsArray.map((id) => {
-      return Question.findById(id, 'Answer').exec();
+      return mongoose.model(db).findById(id, 'Answer').exec();
     }))
       .then((results) => {
         results.forEach((question) => {
@@ -301,17 +306,116 @@ const Question = mongoose.model("question", questionSchema);
         const queryParams = querystring.stringify({
           questionIds: JSON.stringify(questionIdsArray),
           userAnswers: JSON.stringify(userAnswers),
-          results: JSON.stringify(results)
+          results: JSON.stringify(results),
+          number:JSON.stringify(number),
+          db: JSON.stringify(db)
+
         });
-
         res.redirect("/submit?" + queryParams);
-
       })
       .catch((error) => {
         console.error(error);
         res.redirect("/landing-page")
       });
+})
 
+app.post("/choice", async (req,res) => {
+
+    var cluster = req.body.cluster;
+    var questionNumbers = req.body.question;
+    var timeLimit = req.body.timeLimit;
+    var questionsToRender = [];
+
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+    function checkIfNumberIsInArray(number, array){
+      for(var i = 0; i < array.length; i++){
+        if(array[i] == number){
+          return true;
+        }
+      }
+      return false
+    }
+
+    if(cluster == "Wrong Questions"){
+      const client = await User.find({displayName: req.user.username}).exec();
+      const clientProfileWrongQuestions = client[0].userProfile.wrongQuestions
+
+      if(clientProfileWrongQuestions.length >= questionNumbers){
+        var length = clientProfileWrongQuestions.length;
+
+          chosen = [];
+          for (var i = 0; i < questionNumbers; i++) {
+            randomNumber = getRandomNumber(0, length - 1);
+            var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+            while (numberChosen) {
+              randomNumber = getRandomNumber(0, length-1);
+              numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+            }
+            chosen.push(randomNumber);
+            questionsToRender.push(questions[randomNumber]);
+          }
+
+      }
+      // else{
+
+      //   var length = clientProfileWrongQuestions.length;
+      //   var remainder = questionNumbers - length;
+      //   chosen = [];
+      //   for (var i = 0; i < questionNumbers; i++) {
+      //     randomNumber = getRandomNumber(0, length - 1);
+      //     var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+      //     while (numberChosen) {
+      //       randomNumber = getRandomNumber(0, length-1);
+      //       numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+      //     }
+      //     chosen.push(randomNumber);
+      //     questionsToRender.push(questions[randomNumber]);
+      //   }
+
+      //   questions = await db.find({}).exec();
+      //   for(var i = 0; i < remainder; i++){
+
+      //   }
+
+      // }
+
+
+    }else{
+      const db = cluster + "Question"
+      var length = await mongoose.model(db).estimatedDocumentCount();
+      const questions = await mongoose.model(db).find({}).exec();
+
+      const populateQuestions = async () => {
+        const hundredQuestions = [];
+        chosen = [];
+        for (var i = 0; i < questionNumbers; i++) {
+          randomNumber = getRandomNumber(0, length - 1);
+          var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+          while (numberChosen) {
+            randomNumber = getRandomNumber(0, length-1);
+            numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
+          }
+          chosen.push(randomNumber);
+          hundredQuestions.push(questions[randomNumber]._id);
+        }
+        return hundredQuestions;
+      };
+
+      questionsToRender = await populateQuestions();
+    }
+
+    const queryParams = querystring.stringify({
+      questionIds: JSON.stringify(questionsToRender),
+      number: JSON.stringify(questionNumbers),
+      db: JSON.stringify(cluster + "Question")
+    })
+
+    console.log(questionsToRender)
+    res.redirect("/questions?" + queryParams);
+    // await res.render("questions", { username: getName(clientname), questions:questionsToRender});
 })
 
 app.post("/done", (req,res)=>{
