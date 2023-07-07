@@ -73,50 +73,81 @@
       </div>
     </div>
 
-    <div>
-      <h1></h1>
-    </div>
-
-    <div class="test">
-      <form id="testForm" action="/questions" method="post">
-
-        <% for(var i = 0; i < number; i++){ %>
-
-        <div class="questionCard">
-          <h6> <%= i+1 %>. <%=questions[i].Question %></h6>
-
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;"name=<%=i%> value="A" required> <p>A. <%=questions[i].OptionOne
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="B" required> <p>B. <%=questions[i].OptionTwo
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="C" required> <p>C. <%=questions[i].OptionThree
-              %></p>
-          </label>
-          <br>
-          <label class="inline-label">
-            <input type="radio" style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%> value="D" required> <p>D. <%=questions[i].OptionFour
-              %></p>
-          </label>
-          <br>
-
+    <section class="choiceCard">
+      <form method="POST" action="/choice">
+        <div class="clusters">
+          <div>
+            <label for="cluster">Cluster:</label>
+            <input type="radio" id="cluster1" name="cluster" value="BA">
+            <label for="cluster1">Business Administration</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster2" name="cluster" value="Entrepreneurship">
+            <label for="cluster2">Entrepreneurship</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster3" name="cluster" value="Finance">
+            <label for="cluster3">Finance</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster4" name="cluster" value="Hospitality">
+            <label for="cluster4">Hospitality and Tourism</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster5" name="cluster" value="Marketing">
+            <label for="cluster5">Marketing</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster6" name="cluster" value="Principles">
+            <label for="cluster6">Principles</label>
+          </div>
+          <div>
+            <input type="radio" id="cluster7" name="cluster" value="Wrong Questions">
+            <label for="cluster7">Wrong Questions</label>
+          </div>
+        </div>
+        <div class="numberofQuestions">
+          <div>
+            <label for="question">Number of Questions:</label>
+            <input type="radio" id="question1" name="question" value="5">
+            <label for="question1">5</label>
+          </div>
+          <div>
+            <input type="radio" id="question2" name="question" value="10">
+            <label for="question2">10</label>
+          </div>
+          <div>
+            <input type="radio" id="question3" name="question" value="25">
+            <label for="question3">25</label>
+          </div>
+          <div>
+            <input type="radio" id="question4" name="question" value="50">
+            <label for="question4">50</label>
+          </div>
+          <div>
+            <input type="radio" id="question5" name="question" value="100">
+            <label for="question5">100</label>
+          </div>
+        </div>
+        <div class="time">
+          <div>
+            <label for="timeLimit">Time Limit:</label>
+            <input type="radio" id="timed" name="timeLimit" value="timed">
+            <label for="timed">Timed</label>
+          </div>
+          <div>
+            <input type="radio" id="noTime" name="timeLimit" value="none">
+            <label for="noTime">No Time</label>
+          </div>
         </div>
 
-        <% } %>
-
-        <% var questionIds = questions.map(function(question) { console.log(question); return question._id; }); %>
-        <input type="hidden" name="questionIds" value=<%= JSON.stringify(questionIds) %>>
-        <input type="hidden" name="number" value=<%= JSON.stringify(number) %>>
-        <input type="hidden" name="cluster" value=<%= JSON.stringify(cluster) %>>
-        <button type="submit" class="testButton"> Submit</button>
-
+        <div class="buttonForChoice">
+          <button type="submit">Start</button>
+        </div>
       </form>
+    </section>
+
+
 
     </div>
     <script>

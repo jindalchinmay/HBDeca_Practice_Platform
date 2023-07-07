@@ -365,3 +365,38 @@ body {
   width: 50px;
 }
 
+
+
+/* user choice page */
+
+.choiceCard{
+  padding: 20px;
+  /* Add the following styles to move the section to the right */
+  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.clusters{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7%;
+}
+
+.numberofQuestions{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7%;
+}
+
+.time{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7%;
+}
+
+.buttonForChoice{
+  display: flex;
+  justify-content: center;
+}
