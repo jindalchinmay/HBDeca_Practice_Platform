@@ -16,8 +16,9 @@
     crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@700&family=Ysabeau+Infant:wght@500&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">    rel="stylesheet">
 
 </head>
 
@@ -50,6 +51,14 @@
             Questions
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/userInformation" class="nav-link active" aria-current="page">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#home"></use>
+            </svg>
+            User Information
+          </a>
+        </li>
       </ul>
       <hr>
       <div class="dropdown">
@@ -65,7 +74,7 @@
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
           <!-- Other dropdown items -->
           <form method="post" action="/logout">
-            <button type="submit" class="button-link">Sign Out</button>
+            <button type="submit" class="button-link signOut">Sign Out</button>
           </form>
         </ul>
       </div>
@@ -74,13 +83,13 @@
   <!------------------------------------ SIDEBAR ENDS --------------------------------- -->
 
   <!------------------------------------ TITLEBAR STARTS ----------------------------------->
-  <h1 class="landingPageTitle"> TURNER FENTON DECA</h1>
+  <h1 class="landingPageTitle"> TURNER  FENTON  DECA</h1>
   <!------------------------------------ TITLEBAR ENDS ----------------------------------->
 
   <!------------------------------------ Announcement STARTS ----------------------------------->
   <section>
-    <div class="announcementDiv">
-      <h1 class="annoucementTitle">Annoucements</h1>
+    <div id="annoucementContainer" class="announcementDiv">
+      <h1 class="annoucementTitle">Annoucements: </h1>
     </div>
   </section>
   <!------------------------------------ Announcement ENDS ----------------------------------->
@@ -88,7 +97,7 @@
     <!------------------------------------ MAIN CONTENT STARTS ----------------------------------->
   <section class="mainContentContainer">
     <div class="incorrectQuestionGenerator">
-      <h1>Incorrect Question</h1>
+      <h1 class="IQGtitle">Incorrect Question:</h1>
     </div>
 
      <!------------------------- GRAPH STARTS ---------------------------> 

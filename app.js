@@ -239,8 +239,7 @@ const Question = mongoose.model("question", questionSchema);
 
     res.redirect("/login")
   })
-
-
+  
   app.post("/questions", (req,res) =>{
     const questionIdsArray = JSON.parse(req.body.questionIds);
     const questionsAnswers = [];

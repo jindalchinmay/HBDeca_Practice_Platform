@@ -1,3 +1,4 @@
+  /* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
 html, body {
   height: 100%;
 }
@@ -6,8 +7,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background: linear-gradient(to bottom, rgba(35, 58, 103, 1) 25%, rgba(73, 100, 151, 1) 75%);
-}
+  background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
 
 .body {
   display: flex;
@@ -16,12 +16,18 @@ body {
   justify-content: center;
 }
 
+  /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
+
+
+    /* <!-- ________________________________________________ titlepage STARTS ____________________________________________________ --> */
+
+            /* <!-- ________________________________________ LOGO STARTS ________________________________________________ --> */
 .Logo {
   height: 26%;
   width: 26%;
   filter: grayscale(100%) brightness(40000%);
   margin-top: 2%;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   animation: rotate 13s linear infinite;
 }
 
@@ -34,16 +40,30 @@ body {
   }
 }
 
+  /*          <!-- ________________________________________ LOGO ENDS ________________________________________________ --> */
+
+            /* <!-- ________________________________________ TITLE STARTS ________________________________________________ --> */
 .typed-text {
-  display: inline-block;
   color: white;
   font-size: 200%;
   font-weight: bolder;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'DM Serif Text', serif;
+  word-spacing: 20px;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
 }
+
+            /* <!-- ________________________________________ TITLE ENDS________________________________________________ --> */
+
+             /* <!-- ________________________________________ BUTTON STARTS ________________________________________________ --> */
 
 .button-container {
   display: flex;
+  margin-bottom: 5%;
 }
 
 .button-wrapper {
@@ -55,7 +75,7 @@ body {
   position: relative;
   padding: 10px 20px;
   background-color: white;
-  color: black;
+  color: rgba(35, 58, 103, 1);
   border: none;
   border-radius: 30px; /* Adjust the value to control the roundness */
   font-size: 16px;
@@ -118,6 +138,10 @@ body {
     opacity: 0;
   }
 }
+             /* <!-- ________________________________________ BUTTON STARTS ________________________________________________ --> */
+    /* <!-- ________________________________________________ titlepage ENDS ____________________________________________________ --> */
+
+     /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
 
 .sidebarDECA {
   display: hidden !important;
@@ -131,16 +155,36 @@ body {
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  font-family: 'Gothic A1', sans-serif;
+  font-size: 18px;
+  font-weight: 500; 
+  letter-spacing: 0.5px; 
 }
 
-/* <!------------------------------------ TITLEBAR STARTS -----------------------------------> */
+.fs-4 { 
+  margin-top: 2%;
+}
+
+.signOut {
+  margin-left: 10%;
+}
+ /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
+
+/* <!________________________________________ TITLEBAR STARTS __________________________________________-> */
 .landingPageTitle {
   font-size: 80px;
   color: white;
-  float: right;
   margin-right: 5%;
+  margin-left: 26%;
+  font-family: 'DM Serif Text', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  word-spacing: 20px;
+
 }
-/* <!------------------------------------ TITLEBAR ENDS -----------------------------------> */
+/* <!_________________________________________________ TITLEBAR ENDS ____________________________________________________> */
 
 
 /* <!------------------------------------ Annoucement Div STARTS -----------------------------------> */
@@ -152,6 +196,13 @@ body {
   margin: 3% 5% 2% 5%;
   border-radius: 20px;
 }
+
+
+.annoucementTitle { 
+  font-family: 'Cabin', sans-serif;
+  padding: 2%;
+  padding-left: 4%;
+}
 /* <!------------------------------------ Annoucement Div ENDS -----------------------------------> */
 
 /* <!------------------------------------ MAIN PAGE CONTENT ENDS -----------------------------------> */
@@ -161,6 +212,11 @@ body {
   height: 70%;
   float: right;
   margin: 2% 5% 0% 5%;
+}
+
+.IQGtitle {
+  font-family: 'Cabin', sans-serif;
+  padding-left: 4%;
 }
       /* <!------------------------- Incorrect Q STARTS ---------------------------> */
 
