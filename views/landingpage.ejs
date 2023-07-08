@@ -64,9 +64,12 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
           <!-- Other dropdown items -->
-          <form method="post" action="/logout">
-            <button type="submit" class="button-link">Sign Out</button>
-          </form>
+
+            <!-- wrap button in link to logout with no styles -->
+            <li>
+              <a id="logout" href="/logout"><button type="submit" class="button-link">Sign Out</button></a>
+            </li>
+
         </ul>
       </div>
     </div>

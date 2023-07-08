@@ -26,7 +26,7 @@
 
   <body>
     <div
-      class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA"
+      class="d-flex flex-column flex-shrink-0 p-3 text-white sidebarDECA"
       style="width: 280px;">
       <a href="/"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -73,84 +73,91 @@
       </div>
     </div>
 
+    <!-- create a section that ecompaness the whole area -->
+    <section id="clusterBody">
     <section class="choiceCard">
       <form method="POST" action="/choice">
         <div class="clusters">
           <div>
             <label for="cluster">Cluster:</label>
-            <input type="radio" id="cluster1" name="cluster" value="BA">
+            <input type="radio" id="cluster1" name="cluster" value="BA" required>
             <label for="cluster1">Business Administration</label>
           </div>
           <div>
-            <input type="radio" id="cluster2" name="cluster" value="Entrepreneurship">
+            <input type="radio" id="cluster2" name="cluster" value="Entrepreneurship" required>
             <label for="cluster2">Entrepreneurship</label>
           </div>
           <div>
-            <input type="radio" id="cluster3" name="cluster" value="Finance">
+            <input type="radio" id="cluster3" name="cluster" value="Finance" required>
             <label for="cluster3">Finance</label>
           </div>
           <div>
-            <input type="radio" id="cluster4" name="cluster" value="Hospitality">
+            <input type="radio" id="cluster4" name="cluster" value="Hospitality" required>
             <label for="cluster4">Hospitality and Tourism</label>
           </div>
           <div>
-            <input type="radio" id="cluster5" name="cluster" value="Marketing">
+            <input type="radio" id="cluster5" name="cluster" value="Marketing" required>
             <label for="cluster5">Marketing</label>
           </div>
           <div>
-            <input type="radio" id="cluster6" name="cluster" value="Principles">
+            <input type="radio" id="cluster6" name="cluster" value="Principles" required>
             <label for="cluster6">Principles</label>
           </div>
           <div>
-            <input type="radio" id="cluster7" name="cluster" value="Wrong Questions">
+            <input type="radio" id="cluster7" name="cluster" value="Wrong Questions" required>
             <label for="cluster7">Wrong Questions</label>
           </div>
         </div>
         <div class="numberofQuestions">
           <div>
             <label for="question">Number of Questions:</label>
-            <input type="radio" id="question1" name="question" value="5">
+            <input type="radio" id="question1" name="question" value="5" required>
             <label for="question1">5</label>
           </div>
           <div>
-            <input type="radio" id="question2" name="question" value="10">
+            <input type="radio" id="question2" name="question" value="10" required>
             <label for="question2">10</label>
           </div>
           <div>
-            <input type="radio" id="question3" name="question" value="25">
+            <input type="radio" id="question3" name="question" value="25" required>
             <label for="question3">25</label>
           </div>
           <div>
-            <input type="radio" id="question4" name="question" value="50">
+            <input type="radio" id="question4" name="question" value="50" required>
             <label for="question4">50</label>
           </div>
           <div>
-            <input type="radio" id="question5" name="question" value="100">
-            <label for="question5">100</label>
+            <input type="radio" id="question5" name="question" value="100" required>
+            <label for="question5" >100</label>
           </div>
         </div>
         <div class="time">
           <div>
             <label for="timeLimit">Time Limit:</label>
-            <input type="radio" id="timed" name="timeLimit" value="timed">
+          </div>
+          <div>
+            <input type="radio" id="timed" name="timeLimit" value="timed" required>
             <label for="timed">Timed</label>
           </div>
           <div>
-            <input type="radio" id="noTime" name="timeLimit" value="none">
+            <input type="radio" id="noTime" name="timeLimit" value="none" required>
             <label for="noTime">No Time</label>
           </div>
         </div>
 
         <div class="buttonForChoice">
-          <button type="submit">Start</button>
+          <button id="buttonForChoice" type="submit">Start</button>
         </div>
       </form>
     </section>
+  </section>
 
 
 
     </div>
     <script>
+
+
 
     </script>
   </body>
