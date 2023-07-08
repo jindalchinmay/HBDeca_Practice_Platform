@@ -26,8 +26,120 @@
 
 
   <body>
+     <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ */ -->
+    <section>
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+          <span class="fs-4">Sidebar</span>
+        </a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li>
+            <a href="/landing-page" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16"><use
+                  xlink:href="#speedometer2"></use></svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/choice" class="nav-link text-white">
+              <svg class="bi me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
+              Questions
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/userInformation" class="nav-link active" aria-current="page">
+              <svg class="bi me-2" width="16" height="16"><use
+                  xlink:href="#home"></use></svg>
+              User Information
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img
+              src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+              alt width="32" height="32" class="rounded-circle me-2">
+            <strong>
+              <%=username%>
+            </strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+            <!-- Other dropdown items -->
+            <form method="post" action="/logout">
+              <button type="submit" class="button-link signOut">Sign Out</button>
+            </form>
+          </ul>
+        </div>
+      </div>
+    </section>
+    /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
+  
 
+    /* <!-- ________________________________________________ NAME CHANGE STARTS ____________________________________________________ --> */
+    <div class="nameChange"> 
+      <h2 class="nameChangeTitle">Name:</h2>
+      <form class="userNameChange" method="post" action="/userInformation">
+        <label for="newName">New Name:</label>
+        <input type="text" id="newName" name="newName">
+        <br>
+        <button type="submit">Change Name</button>
+      </form>
+    </div>
 
+    /* <!________________________________________ Question Stats STARTS __________________________________________-> */
+    <div class="numOfRight">
+      <h2 class="headingForRightQuestionCounter">Number of Correct Questions:</h2>
+      <form>
+        <input class="totalRightQ" type="hidden" value="<%=questionsCorrect%>">
+      </form>
+
+      <script>
+        var totalRightValue = document.querySelector('.totalRightQ');
+        var total = totalRightValue.value;
+        var headingElement = document.querySelector('.headingForRightQuestionCounter');
+        headingElement.innerHTML += ' ' + total;
+      </script>
+    </div>
+
+    <div class="numOfWrong">
+      <h2 class="headingForWrongQuestionCounter">Number of Incorrect Questions:</h2>
+      <form>
+        <input class="totalWrongQ" type="hidden" value="<%=questionsWrong%>">
+      </form>
+
+      <script>
+        var totalWrongValue = document.querySelector('.totalWrongQ');
+        var total = totalWrongValue.value;
+        var headingElement = document.querySelector('.headingForWrongQuestionCounter');
+        headingElement.innerHTML += ' ' + total;
+      </script>
+    </div>
+
+    <div class="numOfTotalQ">
+      <h2 class="headingForTotalQuestionCounter">Total Answered: </h2>
+      <form>
+        <input class="totalQ" type="hidden" value="<%=totalQuestions%>">
+      </form>
+
+      <script>
+        var totalQuestionValue = document.querySelector('.totalQ');
+        var total = totalQuestionValue.value;
+        var headingElement = document.querySelector('.headingForTotalQuestionCounter');
+        headingElement.innerHTML += ' ' + total;
+      </script>
+
+    </div>
+  
+    
   </body>
 
 </html>

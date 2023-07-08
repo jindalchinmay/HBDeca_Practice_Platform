@@ -141,7 +141,7 @@ body {
              /* <!-- ________________________________________ BUTTON STARTS ________________________________________________ --> */
     /* <!-- ________________________________________________ titlepage ENDS ____________________________________________________ --> */
 
-     /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
+     /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
 
 .sidebarDECA {
   display: hidden !important;
@@ -160,6 +160,10 @@ body {
   font-weight: 500; 
   letter-spacing: 0.5px; 
 }
+
+/* add margin of 4px to .signOut */
+
+
 
 .fs-4 { 
   margin-top: 2%;
@@ -307,9 +311,6 @@ body {
 
 
 /* ---------------------------------------Question Counter ENDS-------------------------------------------------- */
-
-
-
 .button-link {
   display: inline-block;
   background: none;
@@ -399,4 +400,62 @@ body {
 .buttonForChoice{
   display: flex;
   justify-content: center;
+}
+
+/* <!________________________________________ NAME CHANGE STARTS __________________________________________-> */
+.nameChange {
+  width: 70%;
+  background-color: white;
+  float: right;
+  margin-right: 5%;
+  border-radius: 20px;
+  margin-top: 5%;
+}
+
+.nameChangeTitle {
+  padding: 2%;
+}
+
+.userNameChange {
+  padding-left: 3%;
+  padding-bottom: 3%;
+}
+/* <!________________________________________ NAME CHANGE ENDS __________________________________________-> */
+.numOfRight { 
+  width: 70%;
+  background-color: white;
+  float: right;
+  margin-right: 5%;
+  border-radius: 20px;
+  margin-top: 2%; 
+}
+
+.headingForRightQuestionCounter {
+  padding: 2%;
+}
+
+.numOfWrong {
+  width: 70%;
+  background-color: white;
+  float: right;
+  margin-right: 5%;
+  border-radius: 20px;
+  margin-top: 2%;
+}
+
+.headingForWrongQuestionCounter {
+  padding: 2%;
+}
+
+.numOfTotalQ {
+  width: 70%;
+  background-color: white;
+  float: right;
+  margin-right: 5%;
+  border-radius: 20px;
+  margin-top: 2%;
+}
+
+.headingForTotalQuestionCounter {
+  padding: 2%;
 }

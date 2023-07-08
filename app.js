@@ -106,6 +106,7 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
     });
   });
 
+
   passport.deserializeUser(function (user, cb) {
     process.nextTick(function () {
       return cb(null, user);
@@ -134,7 +135,6 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
       res.redirect('/landing-page');
     }
   );
-
 
 
   app.get("/landing-page", async (req, res) => {
@@ -174,6 +174,35 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
       res.redirect("/login");
     }
   })
+
+  app.get("/userInformation", async (req, res) => {
+    
+    
+
+    if(req.isAuthenticated()){
+
+      const clientname = req.user.username
+      const getUserProfile = async (name) =>{
+        var profile = await User.find({displayName: name}).exec();
+          //await console.log(profile)
+        return profile
+      }
+
+      const clientProfile = await getUserProfile(clientname)
+      console.log(clientProfile[0])
+      const questionsCorrect = clientProfile[0].userProfile.questionsCorrect;
+      const questionsWrong = clientProfile[0].userProfile.questionsWrong;
+      const totalQuestions = clientProfile[0].userProfile.questionsAttempted;
+      res.render("userInformation", {username: clientname, questionsCorrect: questionsCorrect, questionsWrong: questionsWrong, totalQuestions: totalQuestions})
+
+    } else{
+      res.redirect("/login");
+    }
+  });
+
+
+
+
 
   app.get("/questions", async (req,res)=>{
 
@@ -418,5 +447,18 @@ app.post("/choice", async (req,res) => {
 })
 
 app.post("/done", (req,res)=>{
-  res.redirect("/landing-page");
+  res.render("/landing-page");
 })
+
+
+
+app.post("/userInformation", async (req, res) => {
+  const newName = req.body.newName
+
+  await User.findOneAndUpdate({ displayName: req.user.username }, { displayName: newName })
+  .then(() => {
+    req.user.username = newName;
+    res.redirect("/userInformation");
+  });
+})
+
