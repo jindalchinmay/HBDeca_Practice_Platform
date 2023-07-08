@@ -262,7 +262,7 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
     }
   })
 
-  app.post('/logout', (req, res) => {
+  app.get('/logout', (req, res) => {
     req.logout(() =>{
       res.redirect('/');
     });

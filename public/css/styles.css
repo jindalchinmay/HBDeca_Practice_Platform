@@ -151,7 +151,7 @@ body {
   z-index: 1; /* Stay on top */
   top: 0;
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: #E8EBED; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
@@ -167,6 +167,11 @@ body {
 
 .fs-4 { 
   margin-top: 2%;
+}
+
+/* remove all styles from logout link id */
+#logout-link {
+  all: unset;
 }
 
 .signOut {
@@ -370,13 +375,53 @@ body {
 
 /* user choice page */
 
+#clusterBody{
+  background-color: #289eb8;
+  height: 100%;
+  /* cover the whole top too */
+  width: 100%;
+  /* make it scrollable */
+  overflow-y: scroll;
+  /* make it scrollable */
+  overflow-x: hidden;
+}
+
+
 .choiceCard{
   padding: 20px;
   /* Add the following styles to move the section to the right */
-  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
-  background-color: white;
+  background-color:#E8EBED;
   margin-top: 10px;
   margin-bottom: 10px;
+  /* make it rounded and in the center of the page */
+  border-radius: 20px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: 25%;
+  /* make it longer on the right side */
+  margin-right: 10% !important;
+}
+
+#buttonForChoice{
+  display: flex;
+  justify-content: center;
+  /* add margin to the top, make it rounded, make the color blue and add hover + click effects */
+  margin-top: 5%;
+  border-radius: 20px;
+  background-color: #4A90E2;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+}
+
+#buttonForChoice:hover{
+  background-color: #3B7CC1;
+}
+
+/* add move down effect when clicked effect */
+#buttonForChoice:active{
+  transform: translateY(4px);
 }
 
 .clusters{
@@ -392,7 +437,7 @@ body {
 }
 
 .time{
-  display: flex;
+  display:flex;
   justify-content: space-between;
   margin-top: 7%;
 }
