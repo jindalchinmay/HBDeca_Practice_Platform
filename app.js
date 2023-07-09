@@ -145,31 +145,36 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
 
     if (req.isAuthenticated()) {
       //console.log(req.user)
-      const clientname = req.user.username;
-      const getUserProfile = async (name) =>{
-        var profile = await User.find({displayName: name}).exec();
-        //await console.log(profile)
-        return profile
-      }
+      const client = await User.find({email: req.user.email}).exec();
+      const clientname = client[0].displayName
 
-      const clientProfile = await getUserProfile(clientname)
-      //console.log(clientProfile[0])
-      const questionsCorrect = clientProfile[0].userProfile.questionsCorrect;
-      const questionsWrong = clientProfile[0].userProfile.questionsWrong;
-      const totalQuestions = (questionsCorrect + questionsWrong);
 
-      res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions});
+      const questionsCorrect = client[0].userProfile.questionsCorrect;
+      const questionsWrong = client[0].userProfile.questionsWrong;
+      const totalQuestions = client[0].userProfile.questionsAttempted; 
+
+      const wrongQArray = client[0].userProfile.wrongQuestions; 
+      const randomIndex = Math.floor((Math.random()* wrongQArray.length)); 
+      const randomQ = wrongQArray[randomIndex]; 
+      const questionRandom = await mongoose.model(randomQ.db).find({_id: randomQ.questionId}).exec(); 
+          
+      res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom[0]});
     } else {
       res.redirect("/login");
     }
   });
 
+app.post("/more", (req,res) => {
+  res.redirect("/choice");
+})
+
   app.get("/choice", async (req,res) => {
 
     if(req.isAuthenticated()){
 
-    const clientname = req.user.username;
-    res.render("clusters", {username: getName(clientname)})
+      client = await User.find({email: req.user.email}).exec();
+      clientname = client[0].displayName;
+      res.render("clusters", {username: getName(clientname)})
     } else{
       res.redirect("/login");
     }
@@ -177,30 +182,23 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
 
   app.get("/userInformation", async (req, res) => {
     
-    
-
     if(req.isAuthenticated()){
 
-      const clientname = req.user.username
-      const getUserProfile = async (name) =>{
-        var profile = await User.find({displayName: name}).exec();
-          //await console.log(profile)
-        return profile
-      }
+      const client = await User.find({email: req.user.email}).exec();
+      const clientname = client[0].displayName;
+      
+      const questionsCorrect = client[0].userProfile.questionsCorrect;
+      const questionsWrong = client[0].userProfile.questionsWrong;
+      const totalQuestions = client[0].userProfile.questionsAttempted;
+      
+      const pastScores = client[0].userProfile.pastScores; 
 
-      const clientProfile = await getUserProfile(clientname)
-      console.log(clientProfile[0])
-      const questionsCorrect = clientProfile[0].userProfile.questionsCorrect;
-      const questionsWrong = clientProfile[0].userProfile.questionsWrong;
-      const totalQuestions = clientProfile[0].userProfile.questionsAttempted;
-      res.render("userInformation", {username: clientname, questionsCorrect: questionsCorrect, questionsWrong: questionsWrong, totalQuestions: totalQuestions})
+      res.render("userInformation", {username: clientname, questionsCorrect: questionsCorrect, questionsWrong: questionsWrong, totalQuestions: totalQuestions, latestResults: pastScores})
 
     } else{
       res.redirect("/login");
     }
   });
-
-
 
 
 
@@ -209,7 +207,8 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
     if(req.isAuthenticated()){
 
       const numberofQuestions = JSON.parse(req.query.number)
-      const clientname = getName(req.user.username);
+      const client = await User.find({email: req.user.email}).exec()
+      const clientname = client[0].displayName;
       const questionsId = JSON.parse(req.query.questionIds);
       const db = JSON.parse(req.query.db);
 
@@ -236,7 +235,9 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
 
     if(req.isAuthenticated()){
 
-      const clientname = getName(req.user.username);
+      const client = await User.find({email: req.user.email}).exec();
+      const clientname = client[0].displayName;
+      
 
       questionsId = JSON.parse(req.query.questionIds);
       userAnswers = JSON.parse(req.query.userAnswers);
@@ -274,8 +275,8 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
   
   app.post("/questions", (req,res) =>{
     const questionIdsArray = JSON.parse(req.body.questionIds);
-    number = JSON.parse(req.body.number);
-    db = JSON.parse(req.body.cluster);
+    const number = JSON.parse(req.body.number);
+    const db = JSON.parse(req.body.cluster);
     const questionsAnswers = [];
 
     function getUserAnswers(request){
@@ -321,9 +322,9 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
           userProfileNew.questionsCorrect += results.correct;
           userProfileNew.questionsWrong += results.incorect;
           userProfileNew.questionsAttempted += (results.correct + results.incorect)
-          userProfileNew.pastScores.push(results.correct/100)
+          userProfileNew.pastScores.push(results.correct/number)
           results.wrongQuestions.forEach((question) =>{
-            userProfileNew.wrongQuestions.push(question);
+            userProfileNew.wrongQuestions.push({questionId: question, db: db});
           })
           //console.log(userProfileNew)
           await User.findOneAndUpdate({displayName: req.user.username}, {userProfile: userProfileNew})
@@ -447,7 +448,7 @@ app.post("/choice", async (req,res) => {
 })
 
 app.post("/done", (req,res)=>{
-  res.render("/landing-page");
+  res.redirect("/landing-page");
 })
 
 
@@ -455,7 +456,7 @@ app.post("/done", (req,res)=>{
 app.post("/userInformation", async (req, res) => {
   const newName = req.body.newName
 
-  await User.findOneAndUpdate({ displayName: req.user.username }, { displayName: newName })
+  await User.findOneAndUpdate({email: req.user.email }, { displayName: newName })
   .then(() => {
     req.user.username = newName;
     res.redirect("/userInformation");
