@@ -176,8 +176,8 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
   })
 
   app.get("/userInformation", async (req, res) => {
-    
-    
+
+
 
     if(req.isAuthenticated()){
 
@@ -271,7 +271,7 @@ mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujx
   app.post("/l", (req,res)=>{
     res.redirect("/login")
   })
-  
+
   app.post("/questions", (req,res) =>{
     const questionIdsArray = JSON.parse(req.body.questionIds);
     number = JSON.parse(req.body.number);
@@ -367,51 +367,6 @@ app.post("/choice", async (req,res) => {
       return false
     }
 
-    if(cluster == "Wrong Questions"){
-      const client = await User.find({displayName: req.user.username}).exec();
-      const clientProfileWrongQuestions = client[0].userProfile.wrongQuestions
-
-      if(clientProfileWrongQuestions.length >= questionNumbers){
-        var length = clientProfileWrongQuestions.length;
-
-          chosen = [];
-          for (var i = 0; i < questionNumbers; i++) {
-            randomNumber = getRandomNumber(0, length - 1);
-            var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-            while (numberChosen) {
-              randomNumber = getRandomNumber(0, length-1);
-              numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-            }
-            chosen.push(randomNumber);
-            questionsToRender.push(questions[randomNumber]);
-          }
-
-      }
-      // else{
-
-      //   var length = clientProfileWrongQuestions.length;
-      //   var remainder = questionNumbers - length;
-      //   chosen = [];
-      //   for (var i = 0; i < questionNumbers; i++) {
-      //     randomNumber = getRandomNumber(0, length - 1);
-      //     var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-      //     while (numberChosen) {
-      //       randomNumber = getRandomNumber(0, length-1);
-      //       numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
-      //     }
-      //     chosen.push(randomNumber);
-      //     questionsToRender.push(questions[randomNumber]);
-      //   }
-
-      //   questions = await db.find({}).exec();
-      //   for(var i = 0; i < remainder; i++){
-
-      //   }
-
-      // }
-
-
-    }else{
       const db = cluster + "Question"
       var length = await mongoose.model(db).estimatedDocumentCount();
       const questions = await mongoose.model(db).find({}).exec();
