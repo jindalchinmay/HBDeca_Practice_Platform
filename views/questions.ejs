@@ -110,7 +110,7 @@
 
         <% } %>
 
-        <% var questionIds = questions.map(function(question) { console.log(question); return question._id; }); %>
+        <% var questionIds = questions.map(function(question) { return question._id; }); %>
         <input type="hidden" name="questionIds" value=<%= JSON.stringify(questionIds) %>>
         <input type="hidden" name="number" value=<%= JSON.stringify(number) %>>
         <input type="hidden" name="cluster" value=<%= JSON.stringify(cluster) %>>

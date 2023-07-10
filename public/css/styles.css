@@ -169,11 +169,6 @@ body {
   margin-top: 2%;
 }
 
-/* remove all styles from logout link id */
-#logout-link {
-  all: unset;
-}
-
 .signOut {
   margin-left: 10%;
 }
@@ -218,9 +213,9 @@ body {
 .mainContentContainer {
   display: flex;
   width: 70%;
-  height: 70%;
+  height: auto;
   float: right;
-  margin: 2% 5% 0% 5%;
+  margin: 2% 5% 5% 5%;
 }
 
 .IQGtitle {
@@ -231,16 +226,41 @@ body {
 
 
 .incorrectQuestionGenerator {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 20px;
   margin-right: 4%;
   width: 61%;
-  height: 110.1%;
+  height: auto;
   background-color: #fff;
-  float: left;
   border-radius: 20px;
 }
-        /* <!------------------------- Incorrect Q ENDS ---------------------------> */
+
+.incorrectQuestionCard {
+  margin: 3%;
+}
+
+.incButton {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.incButton2 {
+  margin-top: 3%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct-answer {
+  background-color: #c1e7c3; /* Set the desired background color for the correct answer */
+}
+
+       /* <!------------------------- Incorrect Q ENDS ---------------------------> */
 
         /* <!------------------------- GRAPH STARTS ---------------------------> */
 
@@ -249,10 +269,7 @@ body {
   width: 35%;
   height: auto;
   background-color: white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: 20px;
 }
 
 .container2 {
@@ -310,12 +327,6 @@ body {
 /* <!------------------------------------ MAIN PAGE CONTENT -----------------------------------> */
 
 
-
-/* --------------------------------------Question Counter STARTS -------------------------------------------------- */
-
-
-
-/* ---------------------------------------Question Counter ENDS-------------------------------------------------- */
 .button-link {
   display: inline-block;
   background: none;
@@ -504,3 +515,21 @@ body {
 .headingForTotalQuestionCounter {
   padding: 2%;
 }
+
+/* <!________________________________________ Question Statistics Ends __________________________________________-> */
+
+
+/* <!________________________________________ Line Graph Starts __________________________________________-> */
+#graph-container {
+  width: 70%;
+  background-color: rgb(236, 235, 235);
+  float: right;
+  margin-right: 5%;
+  border-radius: 20px;
+  margin-top: 2%;
+  height: 50%;
+  margin-bottom: 5%;
+}
+
+
+/* <!________________________________________ Line Graph Ends __________________________________________-> */
