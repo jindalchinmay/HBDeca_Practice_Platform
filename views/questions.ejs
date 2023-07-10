@@ -51,6 +51,14 @@
             Questions
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/userInformation" class="nav-link text-white" >
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#home"></use>
+            </svg>
+            User Information
+          </a>
+        </li>
       </ul>
       <hr>
       <div class="dropdown">
@@ -63,12 +71,12 @@
             class="rounded-circle me-2">
           <strong><%=username%></strong>
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
-          aria-labelledby="dropdownUser1">
-          <!-- Other dropdown items -->
-          <form method="post" action="/logout">
-            <button type="submit" class="button-link">Sign Out</button>
-          </form>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <!-- wrap button in link to logout with no styles -->
+          <li>
+            <a id="logout" href="/logout"><button type="submit" class="button-link signOut">Sign Out</button></a>
+          </li>
+
         </ul>
       </div>
     </div>
