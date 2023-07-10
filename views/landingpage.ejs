@@ -102,8 +102,16 @@
   <!------------------------------------ MAIN CONTENT STARTS ----------------------------------->
   <section class="mainContentContainer">
     <div class="incorrectQuestionGenerator">
-      <h1 class="IQGtitle">Incorrect Question:</h1>
 
+
+      <% if (questionRandom === "no question") { %>
+
+        <h1 class="IQGtitle">You have not answered any questions, please take a test to see wrong questions</h1>
+        <a class="incButton2" id="morePracticeButton"  href="/choice"><button  type="button submit"> More Practice</button></a>
+
+      <% } else { %>
+
+        <h1 class="IQGtitle">Incorrect Question:</h1>
 
       <div class="incorrectQuestionCard">
         <h6> <%=questionRandom.Question %></h6>
@@ -137,11 +145,11 @@
         </label>
 
 
-
       </div>
       <button id="submitButton" type="button" class="incButton btn btn-primary">Submit</button>
         <a class="incButton2" id="morePracticeButton" style="display: none;"  href="/choice"><button  type="button submit"> More Practice</button></a>
 
+      <% } %>
       <script>
         $(document).ready(function() {
           $('#submitButton').click(function() {

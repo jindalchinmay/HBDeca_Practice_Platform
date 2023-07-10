@@ -158,7 +158,7 @@ app.get("/landing-page", async (req, res) => {
     const randomQ = wrongQArray[randomIndex];
     console.log(randomQ)
     if(randomQ == undefined){
-      const questionRandom = "You have not answered any questions/do not have any wrong questions. Please go to the questions to start answers  questions."
+      const questionRandom = "no question"
       res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom});
     } else{
       const questionRandom = await mongoose.model(randomQ.db).find({ _id: randomQ.questionId }).exec();
