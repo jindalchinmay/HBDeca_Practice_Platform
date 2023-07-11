@@ -156,7 +156,7 @@ app.get("/landing-page", async (req, res) => {
     const wrongQArray = client[0].userProfile.wrongQuestions;
     const randomIndex = Math.floor((Math.random() * wrongQArray.length));
     const randomQ = wrongQArray[randomIndex];
-    console.log(randomQ)
+    
     if(randomQ == undefined){
       const questionRandom = "no question"
       res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom});

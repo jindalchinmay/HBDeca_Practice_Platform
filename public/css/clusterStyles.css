@@ -1,0 +1,127 @@
+/* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
+  
+  .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+    /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
+
+    /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
+
+.sidebarDECA {
+    display: hidden !important;
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: black; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* add margin of 4px to .signOut */
+  
+  
+  
+  .fs-4 {
+    margin-top: 2%;
+  }
+  
+  .signOut {
+    margin-left: 10%;
+  }
+   /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
+
+   /* user choice page */
+
+#clusterBody{
+    background-color: #289eb8;
+    height: 100%;
+    /* cover the whole top too */
+    width: 100%;
+    /* make it scrollable */
+    overflow-y: scroll;
+    /* make it scrollable */
+    overflow-x: hidden;
+  }
+  
+  
+  .choiceCard{
+    padding: 20px;
+    /* Add the following styles to move the section to the right */
+    background-color:#E8EBED;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* make it rounded and in the center of the page */
+    border-radius: 20px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    margin-left: 25%;
+    /* make it longer on the right side */
+    margin-right: 10% !important;
+  }
+  
+  #buttonForChoice{
+    display: flex;
+    justify-content: center;
+    /* add margin to the top, make it rounded, make the color blue and add hover + click effects */
+    margin-top: 5%;
+    border-radius: 20px;
+    background-color: #4A90E2;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px;
+  }
+  
+  #buttonForChoice:hover{
+    background-color: #3B7CC1;
+  }
+  
+  /* add move down effect when clicked effect */
+  #buttonForChoice:active{
+    transform: translateY(4px);
+  }
+  
+  .clusters{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+  }
+  
+  .numberofQuestions{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+  }
+  
+  .time{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 7%;
+  }
+  
+  .buttonForChoice{
+    display: flex;
+    justify-content: center;
+  }
+  
