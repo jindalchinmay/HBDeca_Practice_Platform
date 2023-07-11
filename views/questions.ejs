@@ -21,8 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"> rel="stylesheet">
-
+    rel="stylesheet">
 </head>
 
 
@@ -69,12 +68,12 @@
           id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <img
             src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
-            alt width="32" height="32"
+            altwidth="32" height="32"
             class="rounded-circle me-2">
           <strong><%=username%></strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <!-- wrap button in link to logout with no styles -->
+          wrap button in link to logout with no styles
           <li>
             <a id="logout" href="/logout"><button type="submit" class="button-link signOut">Sign Out</button></a>
           </li>
@@ -83,11 +82,13 @@
       </div>
     </div>
 
-    <div>
-      <h1></h1>
-    </div>
+
 
     <div class="test">
+      <div class="timer">
+        <p id="number" style="display: none;"> <%= number %></p>
+        <p id="demo"></p>
+      </div>
       <form id="testForm" action="/questions" method="post">
 
         <% for(var i = 0; i < number; i++){ %>
@@ -131,7 +132,29 @@
     </div>
     <script>
 
-    </script>
+      var number = document.getElementById("number").innerHTML;
+      var date = new Date().getTime();
+      var countDownDate = new Date(date + number*60000).getTime();
+
+      var getSecond = setInterval(function() {
+
+        var now = new Date().getTime();
+
+        var distance = countDownDate - now;
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("demo").innerHTML = hours + "h "
+        + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+          clearInterval(getSecond);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+          document.getElementById("testForm").submit();
+        }
+      }, 1000);
+      </script>
   </body>
 
 </html>

@@ -338,6 +338,15 @@ body {
   cursor: pointer;
 }
 
+.timer{
+  padding: 20px;
+  /* Add the following styles to move the section to the right */
+  margin-left: 280px; /* Adjust this value based on the width of the sidebar */
+  background-color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .questionCard{
   padding: 20px;
   /* Add the following styles to move the section to the right */
