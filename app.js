@@ -156,7 +156,7 @@ app.get("/landing-page", async (req, res) => {
     const wrongQArray = client[0].userProfile.wrongQuestions;
     const randomIndex = Math.floor((Math.random() * wrongQArray.length));
     const randomQ = wrongQArray[randomIndex];
-    
+
     if(randomQ == undefined){
       const questionRandom = "no question"
       res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom});
@@ -230,9 +230,12 @@ app.get("/questions", async (req, res) => {
       return questionsArray;
     }
     const questionsArrayfromID = await getQuestionsFromId();
+    const timer = JSON.parse(req.query.timer);
 
-    res.render("questions",
-      { username: clientname, questions: questionsArrayfromID, number: numberofQuestions, cluster: db })
+      res.render("questions",
+      { username: clientname, questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer  })
+
+
 
   } else {
     res.redirect("/login");
@@ -402,12 +405,10 @@ app.post("/choice", async (req, res) => {
   const queryParams = querystring.stringify({
     questionIds: JSON.stringify(questionsToRender),
     number: JSON.stringify(questionNumbers),
-    db: JSON.stringify(cluster + "Question")
+    db: JSON.stringify(cluster + "Question"),
+    timer: JSON.stringify(timeLimit === 'none' ? "false" : "true")
   })
-
-  console.log(questionsToRender)
   res.redirect("/questions?" + queryParams);
-  // await res.render("questions", { username: getName(clientname), questions:questionsToRender});
 })
 
 app.post("/done", (req, res) => {

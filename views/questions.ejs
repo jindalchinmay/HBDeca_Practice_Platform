@@ -86,9 +86,11 @@
 
 
     <div class="test">
-      <div class="timer">
-        <p id="number" style="display: none;"> <%= number %></p>
-        <p id="demo"></p>
+      <div class="questionCard">
+        <% if(timerBoolean == "true"){ %>
+          <p id="number" style="display: none;"> <%= number %></p>
+          <h1 id="demo"></h1>
+        <% } %>
       </div>
       <form id="testForm" action="/questions" method="post">
 
@@ -133,28 +135,29 @@
     </div>
     <script>
 
-      var number = document.getElementById("number").innerHTML;
-      var date = new Date().getTime();
-      var countDownDate = new Date(date + number*60000).getTime();
+        var number = document.getElementById("number").innerHTML;
+        var date = new Date().getTime();
+        var countDownDate = new Date(date + number*60000 * 1.5).getTime();
 
-      var getSecond = setInterval(function() {
+        var getSecond = setInterval(function() {
 
-        var now = new Date().getTime();
+          var now = new Date().getTime();
 
-        var distance = countDownDate - now;
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          var distance = countDownDate - now;
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("demo").innerHTML = hours + "h "
-        + minutes + "m " + seconds + "s ";
+          document.getElementById("demo").innerHTML = hours + "h "
+          + minutes + "m " + seconds + "s ";
 
-        if (distance < 0) {
-          clearInterval(getSecond);
-          document.getElementById("demo").innerHTML = "EXPIRED";
-          document.getElementById("testForm").submit();
-        }
-      }, 1000);
+          if (distance < 0) {
+            clearInterval(getSecond);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById("testForm").submit();
+          }
+        }, 1000);
+
       </script>
   </body>
 
