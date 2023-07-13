@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"> 
+    rel="stylesheet">
 
 </head>
 
@@ -82,64 +82,49 @@
     </div>
 
     <!-- create a section that ecompaness the whole area -->
+    <section class="encapsule">
+
+      <div class="image"></div>
+
 
     <section class="choiceCard">
-      <form method="POST" action="/choice">
+      <div class="title">
+        <h1>Test</h1>
+        <h4>Choose a cluster to start the test</h4>
+      </div>
+      <form method="POST" action="/choice" class="formClass">
         <div class="clusters">
           <div>
             <label for="cluster">Cluster:</label>
-            <input type="radio" id="cluster1" name="cluster" value="BA" required>
-            <label for="cluster1">Business Administration</label>
+            <select id="cluster" name="cluster" required>
+              <option value="BA">Business Administration</option>
+              <option value="Entrepreneurship">Entrepreneurship</option>
+              <option value="Finance">Finance</option>
+              <option value="Hospitality">Hospitality and Tourism</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Principles">Principles</option>
+            </select>
           </div>
-          <div>
-            <input type="radio" id="cluster2" name="cluster" value="Entrepreneurship" required>
-            <label for="cluster2">Entrepreneurship</label>
-          </div>
-          <div>
-            <input type="radio" id="cluster3" name="cluster" value="Finance" required>
-            <label for="cluster3">Finance</label>
-          </div>
-          <div>
-            <input type="radio" id="cluster4" name="cluster" value="Hospitality" required>
-            <label for="cluster4">Hospitality and Tourism</label>
-          </div>
-          <div>
-            <input type="radio" id="cluster5" name="cluster" value="Marketing" required>
-            <label for="cluster5">Marketing</label>
-          </div>
-          <div>
-            <input type="radio" id="cluster6" name="cluster" value="Principles" required>
-            <label for="cluster6">Principles</label>
-          </div>
+
         </div>
         <div class="numberofQuestions">
           <div>
             <label for="question">Number of Questions:</label>
-            <input type="radio" id="question1" name="question" value="5" required>
-            <label for="question1">5</label>
-          </div>
-          <div>
-            <input type="radio" id="question2" name="question" value="10" required>
-            <label for="question2">10</label>
-          </div>
-          <div>
-            <input type="radio" id="question3" name="question" value="25" required>
-            <label for="question3">25</label>
-          </div>
-          <div>
-            <input type="radio" id="question4" name="question" value="50" required>
-            <label for="question4">50</label>
-          </div>
-          <div>
-            <input type="radio" id="question5" name="question" value="100" required>
-            <label for="question5" >100</label>
+            <select id="question" name="question" required>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
           </div>
         </div>
+
         <div class="time">
           <div>
             <label for="timeLimit">Time Limit:</label>
           </div>
-          <div>
+          <div class="timeLabel">
             <input type="radio" id="timed" name="timeLimit" value="timed" required>
             <label for="timed">Timed</label>
           </div>
@@ -154,6 +139,7 @@
         </div>
       </form>
     </section>
+  </section>
 
 
 

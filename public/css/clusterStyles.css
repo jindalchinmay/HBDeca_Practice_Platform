@@ -1,51 +1,83 @@
 /* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
 html, body {
-    height: 100%;
+
   }
-  
+
   body {
     margin: 0;
     padding: 0;
     min-height: 100%;
     background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
-  
+
   .body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
+  .encapsule {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .image {
+    position: absolute;
+    top: 40%;
+    right: -45%;
+    width: 80%;
+    height: 80%;
+    /* make it more trasneprent */
+    opacity: 0.92;
+    background-image: url('/decaLogo.png');
+    background-size: contain;
+    filter: grayscale(100%) brightness(40000%);
+    z-index: -1;
+    /* make the image sharper and clearer */
+  }
+
     /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
 
     /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
+    .sidebarDECA {
+      height: 100%; /* 100% Full-height */
+      width: 20% !important; /* 0 width - change this with JavaScript */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Stay on top */
+      top: 0;
+      left: 0;
+      background-color: black; /* Black*/
+      overflow-x: hidden; /* Disable horizontal scroll */
+      padding-top: 60px; /* Place content 60px from the top */
+      transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+      font-family: 'Gothic A1', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
 
-.sidebarDECA {
-    display: hidden !important;
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: black; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-    font-family: 'Gothic A1', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+  .encapsule{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    float: right;
   }
-  
+
+  .title *{
+    text-align: center;
+  }
+
   /* add margin of 4px to .signOut */
-  
-  
-  
+
+
+
   .fs-4 {
     margin-top: 2%;
   }
-  
+
   .signOut {
     margin-left: 10%;
   }
@@ -63,23 +95,28 @@ html, body {
     /* make it scrollable */
     overflow-x: hidden;
   }
-  
-  
+
+
   .choiceCard{
-    padding: 20px;
+    padding: 5em;
     /* Add the following styles to move the section to the right */
     background-color:#E8EBED;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    /* make it rounded and in the center of the page */
+    margin-top: 4em;
     border-radius: 20px;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    margin-left: 25%;
-    /* make it longer on the right side */
-    margin-right: 10% !important;
+    margin-right: 4%;
+    cursor: ;
+
+
   }
-  
+  /* make form class with flex center all item */
+  .formClass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+
   #buttonForChoice{
     display: flex;
     justify-content: center;
@@ -92,36 +129,40 @@ html, body {
     font-size: 20px;
     padding: 10px;
   }
-  
+
   #buttonForChoice:hover{
     background-color: #3B7CC1;
   }
-  
+
   /* add move down effect when clicked effect */
   #buttonForChoice:active{
     transform: translateY(4px);
   }
-  
+
   .clusters{
     display: flex;
     justify-content: space-between;
     margin-top: 7%;
   }
-  
+
   .numberofQuestions{
     display: flex;
     justify-content: space-between;
     margin-top: 7%;
   }
-  
+
   .time{
     display:flex;
     justify-content: space-between;
     margin-top: 7%;
   }
-  
+
   .buttonForChoice{
     display: flex;
     justify-content: center;
   }
-  
+
+  .timeLabel{
+    margin-right: 5px;
+    margin-left: 5px;
+  }
