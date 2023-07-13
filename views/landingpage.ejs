@@ -88,14 +88,24 @@
   <!------------------------------------ SIDEBAR ENDS --------------------------------- -->
 
   <!------------------------------------ TITLEBAR STARTS ----------------------------------->
-  <h1 class="landingPageTitle"> TURNER FENTON DECA</h1>
+  <section class="encapsule"> 
+    <div class="landingSection1"> 
+    <h1 class="landingPageTitle"> TURNER FENTON DECA</h1>
+
+    <section class="gradientPart">
+      <div class="backgroundGradient"></div>
+        <div class="stage1Image">
+          <img id="execTeamImg" src="/execfakeimg.png">
+        </div>
+    </div>
   <!------------------------------------ TITLEBAR ENDS ----------------------------------->
 
   <!------------------------------------ Announcement STARTS ----------------------------------->
   <section>
-    <div id="annoucementContainer" class="announcementDiv">
-      <h1 class="annoucementTitle">Annoucements: </h1>
-    </div>
+    <!-- <div class="announcementDiv">
+      <div class="arrow-div"></div>
+      <p class="annoucementTitle">Annoucements: </p>
+    </div> -->
   </section>
   <!------------------------------------ Announcement ENDS ----------------------------------->
 
@@ -178,35 +188,8 @@
         </form>
         <canvas id="doughnutChart"></canvas>
       </div>
-
-      <script>
-        var correctInput = document.querySelector('.Correct');
-        var incorrectInput = document.querySelector('.Incorrect');
-        var correct = correctInput.value;
-        var incorrect = incorrectInput.value;
-
-        const data = {
-          labels: ['Correct', 'Incorrect'],
-          datasets: [{
-            data: [correct, incorrect],
-            backgroundColor: ['#36a2eb', '#ff6384'],
-            hoverBackgroundColor: ['#36a2eb', '#ff6384']
-          }]
-        };
-
-        const canvas = document.getElementById('doughnutChart');
-        const ctx = canvas.getContext('2d');
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: data,
-          options: {
-            cutoutPercentage: 60,
-            responsive: true,
-            maintainAspectRatio: true
-          }
-        });
-      </script>
     </div>
+  </section>
     <!------------------------- GRAPH ENDS --------------------------->
 
     <!------------------------------------ Question Counter STARTS ----------------------------------->
@@ -214,7 +197,33 @@
     <!------------------------------------ Question Counter ENDS ----------------------------------->
 
     <!------------------------------------ MAIN CONTENT ENDS ----------------------------------->
+    <script>
+      var correctInput = document.querySelector('.Correct');
+      var incorrectInput = document.querySelector('.Incorrect');
+      var correct = correctInput.value;
+      var incorrect = incorrectInput.value;
 
+      const data = {
+        labels: ['Correct', 'Incorrect'],
+        datasets: [{
+          data: [correct, incorrect],
+          backgroundColor: ['#36a2eb', '#ff6384'],
+          hoverBackgroundColor: ['#36a2eb', '#ff6384']
+        }]
+      };
+
+      const canvas = document.getElementById('doughnutChart');
+      const ctx = canvas.getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: {
+          cutoutPercentage: 60,
+          responsive: true,
+          maintainAspectRatio: true
+        }
+      });
+    </script>
 
 
 </body>
