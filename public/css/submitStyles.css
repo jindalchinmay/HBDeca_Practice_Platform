@@ -1,7 +1,13 @@
-/* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */ */
-html, body {
-  height: 100%;
+
+.encapsule{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  float: right;
+  padding-bottom: 4em;
 }
+
 
 body {
   margin: 0;
@@ -18,14 +24,12 @@ body {
 
   /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
 
-  
-  
-  /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
 
+
+  /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
   .sidebarDECA {
-    display: hidden !important;
     height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
+    width: 20% !important; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
@@ -39,15 +43,15 @@ body {
     font-weight: 500;
     letter-spacing: 0.5px;
   }
-  
+
   /* add margin of 4px to .signOut */
-  
-  
-  
+
+
+
   .fs-4 {
     margin-top: 2%;
   }
-  
+
   .signOut {
     margin-left: 10%;
   }
@@ -63,49 +67,97 @@ body {
     color: white;
     cursor: pointer;
   }
-  
+
   .questionCard{
     padding: 20px;
     /* Add the following styles to move the section to the right */
-    margin-left: 280px; /* Adjust this value based on the width of the sidebar */
     background-color: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 20px;
+    width: 80%;
   }
-  
-  .testButton{
-    margin-left:47%;
-    width: 6%;
-    margin-right: 47%;
+
+  #testForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
+  .test{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .title{
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  .stats{
+    font-size: 1.5em;
+  }
+
+  .testButton {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  .testButton:hover {
+    background-color: darkblue;
+  }
+
+  .testButton:active {
+    transform: scale(0.95);
+  }
+
   .inline-label {
     display: inline-flex;
     align-items: center;
   }
-  
+
   .red {
     background-color: rgba(225, 0, 0, 0.5);
+    border-radius: 1rem;
+    padding: 1em;
   }
-  
+
   .green {
     background-color: rgba(0, 128, 0, 0.5);
+    border-radius: 1rem;
+    padding: 1em;
   }
-  
+
   .H{
     display: none;
   }
-  
+
   .dropdownToggle {
     all: unset;
     cursor: pointer;
     height: 50px;
     width: 50px;
   }
-  
+
   .dropdownArrow{
     height: 50px;
     width: 50px;
   }
-  
-  
+
+  .containerForStats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+

@@ -1,8 +1,6 @@
 /* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
-html, body {
-  
-  }
-  
+
+
   .encapsule{
     display: flex !important;
     flex-direction: column;
@@ -11,15 +9,15 @@ html, body {
     background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
 
   }
-  
-  
+
+
   .body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
     /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
 
     .landingSection1 {
@@ -30,12 +28,12 @@ html, body {
       text-align: center;
       background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
     }
-    
+
 
     .title1{
-      height: 20%;      
+      height: 20%;
     }
-    
+
     .landingPageTitle {
       font-size: 7rem;
       color: white;
@@ -47,9 +45,9 @@ html, body {
 
     #execTeamImg {
       z-index: 2;
-      height: 100vh;      
+      height: 100vh;
     }
-    
+
 /* <!_________________________________________________ TITLEBAR ENDS ________________________________________________>
 
   /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
@@ -70,13 +68,13 @@ html, body {
     font-weight: 500;
     letter-spacing: 0.5px;
   }
-  
+
   /* add margin of 4px to .signOut */
-  
+
   .fs-4 {
     margin-top: 2%;
   }
-  
+
   .signOut {
     margin-left: 10%;
   }
@@ -90,8 +88,8 @@ html, body {
     background-color: rgb(253, 250, 250);
     height: 300px;
   }
-  
-  
+
+
   .annoucementTitle {
     font-size: 3rem;
     font-family: 'Cabin', sans-serif;
@@ -100,25 +98,25 @@ html, body {
     justify-content: center;
     align-items: center;
   }
-  /* <!___________________________________________________ Annoucement Div ENDS ________________________________________________> */    
-  
+  /* <!___________________________________________________ Annoucement Div ENDS ________________________________________________> */
+
  /* <!-- ________________________________________________ Main page content starts ____________________________________________________ --> */
  .mainContentContainer {
     display: flex;
     background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
     padding: 4em;
   }
-  
+
   .IQGtitle {
     font-family: 'Cabin', sans-serif;
     padding-left: 4%;
   }
         /* <!------------------------- Incorrect Q STARTS ---------------------------> */
-  
+
     .inline-label{
       display: flex;
     }
-  
+
   .incorrectQuestionGenerator {
     display: flex;
     align-items: center;
@@ -130,7 +128,7 @@ html, body {
     border-radius: 10px;
     margin-right: 4%;
   }
-  
+
   .incorrectQuestionCard {
     margin: 0%;
   }
@@ -138,14 +136,14 @@ html, body {
   .IQGtitle{
     margin-bottom: 5%;
   }
-  
+
   .incButton {
     width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .incButton2 {
     margin-top: 3%;
     width: 20%;
@@ -153,15 +151,15 @@ html, body {
     justify-content: center;
     align-items: center;
   }
-  
+
   .correct-answer {
     background-color: #c1e7c3; /* Set the desired background color for the correct answer */
   }
-  
+
          /* <!------------------------- Incorrect Q ENDS ---------------------------> */
-  
+
           /* <!------------------------- GRAPH STARTS ---------------------------> */
-  
+
   .pieGraph {
     display: inline-flex;
     width: 35%;
@@ -169,7 +167,7 @@ html, body {
     background-color: white;
     border-radius: 20px;
   }
-  
+
   .container2 {
     width: auto;
     display: flex;
@@ -178,7 +176,7 @@ html, body {
     max-width: 100%;
     max-height: 100%;
   }
-  
+
   #doughnutChart {
     background-color: white;
     width: 100%;
@@ -188,7 +186,7 @@ html, body {
     padding: 2%;
 
   }
-  
+
   .statisticsTitle {
     font-family: 'Cabin', sans-serif;
     display: flex;
@@ -197,9 +195,9 @@ html, body {
     width: 100%;
     padding: 1%;
   }
-  
+
           /* <!------------------------- GRAPH ENDS ---------------------------> */
-  
+
   .questionCounter {
     width: 24.5%;
     height: auto;
@@ -213,7 +211,7 @@ html, body {
     border-bottom-right-radius: 20px;
     margin-bottom: 5%;
   }
-  
+
   .headingForQuestionCounter {
     padding: 3% 2% 3% 2%;
     display: flex;
@@ -222,6 +220,5 @@ html, body {
     font-family: 'Cabin', sans-serif;
     padding: 2%;
   }
-  
+
    /* <!-- ________________________________________________ Main page content ends ____________________________________________________ --> */
-  

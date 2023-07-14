@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <title>Turner Fenton DECA</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="./css/submitStyles.css">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"> 
+  <head>
+    <meta charset="utf-8">
+    <title>Turner Fenton DECA</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/submitStyles.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous">
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet">
 
-</head>
+  </head>
 
   <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA" style="width: 280px;">
+    <div
+      class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebarDECA"
+      style="width: 280px;">
       <a href="/"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use
@@ -70,33 +76,60 @@
             class="rounded-circle me-2">
           <strong><%=username%></strong>
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow"
+          aria-labelledby="dropdownUser1">
           <!-- wrap button in link to logout with no styles -->
           <li>
-            <a id="logout" href="/logout"><button type="submit" class="button-link signOut">Sign Out</button></a>
+            <a id="logout" href="/logout"><button type="submit"
+                class="button-link signOut">Sign Out</button></a>
           </li>
 
         </ul>
       </div>
     </div>
+    <section class="encapsule">
 
-    <div class="test">
-      <form id="testForm" action="/done" method="post">
-
-        <% for(var i = 0; i < number; i++){ %>
-
+      <div class="test">
         <div class="questionCard">
+          <h1 class="title">Results</h1>
+          <div class="containerForStats">
+            <h3 class="stats">Questions Right: </h3>
+            <h3 class="stats"><%= results.correct %></h3>
+          </div>
+          <div class="containerForStats">
+            <h3 class="stats">Questions Wrong: </h3>
+            <h3 class="stats"><%= results.incorect %></h3>
+          </div>
+          <div class="containerForStats">
+            <h3 class="stats">Total Questions: </h3>
+            <h3 class="stats"><%= number %></h3>
+          </div>
+          <div class="containerForStats">
+            <h3 class="stats">Total percentage: </h3>
+            <h3 class="stats"><%= results.correct*100/number%>% </h3>
+          </div>
+        </div>
 
-          <h6 class="<%= questions[i].Answer === answers[i] ? 'green' : 'red' %>"> <%= i+1 %>. <%=questions[i].Question %></h6>
-             <button class="dropdownToggle" type="button">
+        <form id="testForm" action="/done" method="post">
+
+          <% for(var i = 0; i < number; i++){ %>
+
+          <div class="questionCard">
+
+            <h6
+              class="<%= questions[i].Answer === answers[i] ? 'green' : 'red' %>">
+              <%= i+1 %>. <%=questions[i].Question %></h6>
+            <button class="dropdownToggle" type="button">
               <img class="dropdownArrow" src="./drop-down-arrow.png">
             </button>
             <div class="H optionToChose<%=i%>">
               <label class="inline-label">
                 <input type="radio"
                   style="margin-bottom: 13px; margin-right: 5px;"
-                  name=<%=i%> value="A" required <% if(answers[i] === 'A') { %> checked <%}else{%> disabled <%}%>>
-                <p class="<%= questions[i].Answer === 'A' ? 'green' : '' %>">A. <%= questions[i].OptionOne %></p>
+                  name=<%=i%> value="A" required <% if(answers[i] === 'A') { %>
+                checked <%}else{%> disabled <%}%>>
+                <p class="<%= questions[i].Answer === 'A' ? 'green' : '' %>">A.
+                  <%= questions[i].OptionOne %></p>
               </label>
               <br>
             </div>
@@ -104,8 +137,10 @@
               <label class="inline-label">
                 <input type="radio"
                   style="margin-bottom: 13px; margin-right: 5px;"
-                  name=<%=i%> value="B" required <% if(answers[i] === 'B') { %> checked <%}else{%> disabled <%}%>>
-                  <p class="<%= questions[i].Answer === 'B' ? 'green' : '' %>">B. <%=questions[i].OptionTwo %></p>
+                  name=<%=i%> value="B" required <% if(answers[i] === 'B') { %>
+                checked <%}else{%> disabled <%}%>>
+                <p class="<%= questions[i].Answer === 'B' ? 'green' : '' %>">B.
+                  <%=questions[i].OptionTwo %></p>
               </label>
               <br>
             </div>
@@ -113,8 +148,10 @@
               <label class="inline-label">
                 <input type="radio"
                   style="margin-bottom: 13px; margin-right: 5px;"
-                  name=<%=i%> value="C" required <% if(answers[i] === 'C') { %> checked <%}else{%> disabled <%}%>>
-                  <p class="<%= questions[i].Answer === 'C' ? 'green' : '' %>">C. <%=questions[i].OptionThree %></p>
+                  name=<%=i%> value="C" required <% if(answers[i] === 'C') { %>
+                checked <%}else{%> disabled <%}%>>
+                <p class="<%= questions[i].Answer === 'C' ? 'green' : '' %>">C.
+                  <%=questions[i].OptionThree %></p>
               </label>
               <br>
             </div>
@@ -122,17 +159,20 @@
               <label class="inline-label">
                 <input type="radio"
                   style="margin-bottom: 13px; margin-right: 5px;"
-                  name=<%=i%> value="D" required <% if(answers[i] === 'D') { %> checked <%}else{%> disabled <%}%>>
-                  <p class="<%= questions[i].Answer === 'D' ? 'green' : '' %>">D. <%=questions[i].OptionFour %></p>
+                  name=<%=i%> value="D" required <% if(answers[i] === 'D') { %>
+                checked <%}else{%> disabled <%}%>>
+                <p class="<%= questions[i].Answer === 'D' ? 'green' : '' %>">D.
+                  <%=questions[i].OptionFour %></p>
               </label>
               <br>
             </div>
           </div>
-        <% } %>
-        <button type="submit" class="testButton"> Home </button>
-      </form>
+          <% } %>
+          <button type="submit" class="testButton"> Home </button>
+        </form>
 
-    </div>
+      </div>
+    </section>
     <script>
       const elements = document.getElementsByClassName('dropdownToggle');
 

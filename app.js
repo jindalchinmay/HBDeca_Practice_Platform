@@ -12,6 +12,7 @@ const mailVerify = require('./send'); //send google authentication
 const getName = require("./nameTruncator") //profile name simplifier
 const speakeasy = require('speakeasy'); //verification token
 const querystring = require('querystring');
+const { time } = require('console');
 const app = express();
 const port = 5000;
 
@@ -117,6 +118,8 @@ app.get("/", (req, res) => {
   res.render("homePage", {});
 });
 
+
+
 app.get("/login", (req, res) => {
   if (req.isAuthenticated()) {
     res.redirect("/landing-page")
@@ -187,10 +190,6 @@ app.get("/choice", async (req, res) => {
 })
 
 app.get("/userInformation", async (req, res) => {
-
-
-
-
   if (req.isAuthenticated()) {
 
     const client = await User.find({ email: req.user.email }).exec();
@@ -209,36 +208,43 @@ app.get("/userInformation", async (req, res) => {
   }
 });
 
-
-
 app.get("/questions", async (req, res) => {
+try {
+    if (req.isAuthenticated()) {
 
-  if (req.isAuthenticated()) {
+    try {
+      const numberofQuestions = JSON.parse(req.query.number)
+      const client = await User.find({ email: req.user.email }).exec()
+      const clientname = client[0].displayName;
+      const questionsId = JSON.parse(req.query.questionIds);
+      const db = JSON.parse(req.query.db);
 
-    const numberofQuestions = JSON.parse(req.query.number)
-    const client = await User.find({ email: req.user.email }).exec()
-    const clientname = client[0].displayName;
-    const questionsId = JSON.parse(req.query.questionIds);
-    const db = JSON.parse(req.query.db);
-
-    const getQuestionsFromId = async () => {
-      questionsArray = [];
-      for (var i = 0; i < numberofQuestions; i++) {
-        const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
-        await questionsArray.push(questionFromDatabase[0]);
+      const getQuestionsFromId = async () => {
+        questionsArray = [];
+        for (var i = 0; i < numberofQuestions; i++) {
+          const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
+          await questionsArray.push(questionFromDatabase[0]);
+        }
+        return questionsArray;
       }
-      return questionsArray;
-    }
-    const questionsArrayfromID = await getQuestionsFromId();
-    const timer = JSON.parse(req.query.timer);
 
+      const questionsArrayfromID = await getQuestionsFromId();
+      const timer = JSON.parse(req.query.timer);
+      console.log()
       res.render("questions",
-      { username: clientname, questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer  })
+      { username: getName(clientname), questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer, time: JSON.parse(req.query.time)})
 
+    } catch (error) {
+      res.redirect("/choice");
+    }
 
-
-  } else {
+    } else {
     res.redirect("/login");
+    }
+  } catch (error) {
+
+    console.log(error)
+    res.redirect("/homePage");
   }
 })
 
@@ -246,16 +252,14 @@ app.get("/questions", async (req, res) => {
 app.get("/submit", async (req, res) => {
 
   if (req.isAuthenticated()) {
-
     const client = await User.find({ email: req.user.email }).exec();
     const clientname = client[0].displayName;
-
 
     questionsId = JSON.parse(req.query.questionIds);
     userAnswers = JSON.parse(req.query.userAnswers);
     number = JSON.parse(req.query.number);
     db = JSON.parse(req.query.db);
-
+    results = JSON.parse(req.query.results);
 
     const getQuestionsFromId = async () => {
       questionsArray = [];
@@ -268,7 +272,7 @@ app.get("/submit", async (req, res) => {
     }
     const questionsArrayfromID = await getQuestionsFromId();
 
-    await res.render("submit", { username: clientname, questions: questionsArrayfromID, answers: userAnswers, number: number });
+    await res.render("submit", { username: getName(clientname), questions: questionsArrayfromID, answers: userAnswers, number: number, results: results });
 
   } else {
     res.redirect("/login");
@@ -290,6 +294,8 @@ app.post("/questions", (req, res) => {
   const number = JSON.parse(req.body.number);
   const db = JSON.parse(req.body.cluster);
   const questionsAnswers = [];
+
+  console.log(req.body)
 
   function getUserAnswers(request) {
     var userAnswers = [];
@@ -329,7 +335,7 @@ app.post("/questions", (req, res) => {
       var results = checkAnswers(userAnswers, questionsAnswers);
 
       async function updateUserStats(results) {
-        var user = await User.find({ displayName: req.user.username }).exec()
+        var user = await User.find({ email: req.user.email }).exec()
         var userProfileNew = user[0].userProfile;
         userProfileNew.questionsCorrect += results.correct;
         userProfileNew.questionsWrong += results.incorect;
@@ -339,7 +345,7 @@ app.post("/questions", (req, res) => {
           userProfileNew.wrongQuestions.push({ questionId: question, db: db });
         })
         //console.log(userProfileNew)
-        await User.findOneAndUpdate({ displayName: req.user.username }, { userProfile: userProfileNew })
+        await User.findOneAndUpdate({ email: req.user.email }, { userProfile: userProfileNew })
       }
 
       updateUserStats(results)
@@ -401,12 +407,14 @@ app.post("/choice", async (req, res) => {
   };
 
   questionsToRender = await populateQuestions();
-
+  const time = new Date().getTime();
+  console.log(time)
   const queryParams = querystring.stringify({
     questionIds: JSON.stringify(questionsToRender),
     number: JSON.stringify(questionNumbers),
     db: JSON.stringify(cluster + "Question"),
-    timer: JSON.stringify(timeLimit === 'none' ? "false" : "true")
+    timer: JSON.stringify(timeLimit === 'none' ? "false" : "true"),
+    time: JSON.stringify(time)
   })
   res.redirect("/questions?" + queryParams);
 })
@@ -427,3 +435,6 @@ app.post("/userInformation", async (req, res) => {
     });
 })
 
+app.use((req, res) => {
+  res.redirect('/');
+});
