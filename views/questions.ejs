@@ -154,56 +154,50 @@
     </section>
     <script>
 
-        var number = document.getElementById("number").innerHTML;
-        var dateStr = document.getElementById("time").innerHTML;
+      var number = document.getElementById("number").innerHTML;
+      var dateStr = parseInt(document.getElementById("time").innerHTML,10);
+      dateStr += (number * 60 * 1000 * 0.75)
+      var getSecond = setInterval(function() {
 
-          var countDownDate = new Date(formattedDateStr + number * 60000 * 1.5).getTime();
-          console.log(countDownDate);
+        var now = new Date().getTime();
+        console.log(now)
+        var distance = dateStr - now;
+        console.log(distance)
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        var getSecond = setInterval(function() {
+        if(hours > 0){
 
-          var now = new Date().getTime();
-          console.log(now)
-          var distance = dateStr - now;
-          console.log(distance)
-          console.log(now)
-          var distance = dateStr - now;
-          console.log(distance)
-          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+        } else{
+          document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+        }
 
-          if(hours > 0){
-
-          document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
-          } else{
-            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-          }
-
-          if (distance < 0) {
-            clearInterval(getSecond);
-            document.getElementById("demo").innerHTML = "EXPIRED";
-            document.getElementById("testForm").submit();
-          }
-        }, 1000);
+        if (distance < 0) {
+          clearInterval(getSecond);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+          document.getElementById("testForm").submit();
+        }
+      }, 1000);
 
 
 
-  //       var isCursorActive = true;
+//       var isCursorActive = true;
 
-  //       window.addEventListener('blur', function() {
- //          isCursorActive = false;
- //        });
+//       window.addEventListener('blur', function() {
+//          isCursorActive = false;
+//        });
 
 //         window.addEventListener('focus', function() {
 //           isCursorActive = true;
 //         });
 //
-  //       setInterval(function() {
+//       setInterval(function() {
 //           if (!isCursorActive) {
-       //      document.getElementById("testForm").submit();
-       //   }
-       // }, 100);
+     //      document.getElementById("testForm").submit();
+     //   }
+     // }, 100);
       </script>
   </body>
 
