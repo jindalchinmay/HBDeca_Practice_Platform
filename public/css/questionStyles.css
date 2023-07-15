@@ -52,7 +52,7 @@ body {
     font-size: 1.5rem;
     margin: 2%;
     margin-bottom: 1%;
-    
+
     }
 
   .fs-4 {
@@ -106,7 +106,7 @@ body {
     /* make width only as long as text */
     display: inline-block;
     /* make it on the right side fo the screen */
-    float: right;
+
     /* makeit smaller */
     scale: 80%;
     text-align: center;
@@ -181,7 +181,7 @@ body {
     font-weight: 700;
     font-size: 1rem;
   }
-  
+
   .strong2 {
     font-weight: 700;
   }
