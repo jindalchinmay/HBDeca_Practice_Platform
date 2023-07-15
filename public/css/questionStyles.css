@@ -2,7 +2,7 @@
 .encapsule{
   display: flex !important;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   width: 80%;
   float: right;
   padding-bottom: 4em;
@@ -13,13 +13,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
+  background-image: #ccc}
 
 .body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
   /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
@@ -47,6 +45,15 @@ body {
   /* add margin of 4px to .signOut */
 
 
+  .examHeading {
+    font-family: 'Cabin', sans-serif;
+    color: grey;
+    float: left;
+    font-size: 1.5rem;
+    margin: 2%;
+    margin-bottom: 1%;
+    
+    }
 
   .fs-4 {
     margin-top: 2%;
@@ -69,16 +76,20 @@ body {
   }
 
   .questionCard{
-    padding: 20px;
     /* Add the following styles to move the section to the right */
-    background-color: white;
-    margin-top: 2em;
     margin-bottom: 2em;
-    border-radius: 20px;
-    width: 80%;
-    margin-left: 10%;
+    margin-right: 5%;
   }
 
+  .top{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #demo{
+    color: white !important;
+    text-align: center;
+  }
 
   /* make questionCard alwayus stay at the top */
   .timerCard {
@@ -87,9 +98,8 @@ body {
     color: white;
     text-align: right;
     top: 0;
-    margin-top: 2em;
     margin-bottom: 2em;
-    width: auto;
+    width: 10em;
     margin-left: auto;
     /* make border black */
     border: 3px solid black;
@@ -99,18 +109,18 @@ body {
     float: right;
     /* makeit smaller */
     scale: 80%;
+    text-align: center;
   }
 
   #testForm{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-left: 5%;
   }
 
   .testButton {
     display: inline-block;
-    width: auto;
-    text-align: center;
+    width: 10%;
     padding: 10px 20px;
     background-color: blue;
     color: white;
@@ -118,6 +128,8 @@ body {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .testButton:hover {
@@ -157,3 +169,27 @@ body {
     width: 50px;
   }
 
+  .mainQ {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    word-spacing: 0.15em;
+    margin-bottom: 2%;
+  }
+
+  #strong {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  
+  .strong2 {
+    font-weight: 700;
+  }
+
+  .answers {
+    margin-left: 5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    word-spacing: 0.10em;
+  }

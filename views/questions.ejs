@@ -89,51 +89,55 @@
     </div>
 
     <section class="encapsule">
+      <h5 class="examHeading">Exam</h5>
+      <div class="timerCard">
+        <p id="time" style="display: none;"> <%= time %></p>
+        <% if(timerBoolean == "true"){ %>
+        <p id="number" style="display: none;"> <%= number %></p>
+        <h5 class="examHeading" id="demo"></h5>
+        <% } %>
+      </div>
+      <hr>
 
       <div class="test">
-        <div class="timerCard">
-          <p id="time" style="display: none;"> <%= time %></p>
-          <% if(timerBoolean == "true"){ %>
-          <p id="number" style="display: none;"> <%= number %></p>
-          <h1 id="demo"></h1>
-          <% } %>
-        </div>
+        
+        
         <form id="testForm" action="/questions" method="post">
 
           <% for(var i = 0; i < number; i++){ %>
 
           <div class="questionCard">
-            <h6> <%= i+1 %>. <%=questions[i].Question %></h6>
+            <h6 class="mainQ"> <strong id="strong"><em><%= i+1 %>.</em></strong> <%=questions[i].Question %></h6>
 
             <label class="inline-label">
-              <input type="radio"
+              <input type="radio" 
                 style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%>
-              value="A" required> <p>A. <%=questions[i].OptionOne
+              value="A" required> <p class="answers"> <strong class="strong2"><em></em>A.</em></strong> <%=questions[i].OptionOne
                 %></p>
             </label>
             <br>
             <label class="inline-label">
               <input type="radio"
                 style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%>
-              value="B" required> <p>B. <%=questions[i].OptionTwo
+              value="B" required> <p class="answers"><strong class="strong2"><em></em>B.</em></strong> <%=questions[i].OptionTwo
                 %></p>
             </label>
             <br>
             <label class="inline-label">
               <input type="radio"
                 style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%>
-              value="C" required> <p>C. <%=questions[i].OptionThree
+              value="C" required> <p class="answers"><strong class="strong2"><em></em>C.</em></strong> <%=questions[i].OptionThree
                 %></p>
             </label>
             <br>
             <label class="inline-label">
               <input type="radio"
                 style="margin-bottom: 13px; margin-right: 5px;" name=<%=i%>
-              value="D" required> <p>D. <%=questions[i].OptionFour
+              value="D" required> <p class="answers"><strong class="strong2"><em></em>D.</em></strong> <%=questions[i].OptionFour
                 %></p>
             </label>
             <br>
-
+          <hr>
           </div>
 
           <% } %>
@@ -149,18 +153,15 @@
       </div>
     </section>
     <script>
-
-        var number = document.getElementById("number").innerHTML;
-        var dateStr = document.getElementById("time").innerHTML;
-        
-          var countDownDate = new Date(formattedDateStr + number * 60000 * 1.5).getTime();
-          console.log(countDownDate);
-
+ var number = document.getElementById("number").innerHTML;
+        var dateStr = parseInt(document.getElementById("time").innerHTML,10);
+        dateStr += (number * 60 * 1000 * 1.5)
         var getSecond = setInterval(function() {
 
           var now = new Date().getTime();
-
-          var distance = countDownDate - now;
+          console.log(now)
+          var distance = dateStr - now;
+          console.log(distance)
           var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
           var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -196,7 +197,6 @@
        //      document.getElementById("testForm").submit();
        //   }
        // }, 100);
-
       </script>
   </body>
 

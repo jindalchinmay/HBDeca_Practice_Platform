@@ -2,7 +2,7 @@
 .encapsule{
   display: flex !important;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   width: 80%;
   float: right;
   padding-bottom: 4em;
@@ -13,13 +13,11 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100%;
-  background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
+  background-image: #ccc}
 
 .body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
   /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
@@ -68,20 +66,24 @@ body {
     cursor: pointer;
   }
 
+  .resultsCard {
+    width: 40%;
+  }
+
+
   .questionCard{
-    padding: 20px;
     /* Add the following styles to move the section to the right */
-    background-color: white;
     margin-top: 2em;
     margin-bottom: 2em;
     border-radius: 20px;
-    width: 80%;
+    margin-right: 5%;
+
   }
 
   #testForm{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-left: 5%;
   }
 
   .test{
@@ -94,16 +96,27 @@ body {
   .title{
     text-align: center;
     margin-bottom: 0.5em;
+    font-family: 'Cabin', sans-serif;
+    color: grey;
+    font-size: 3rem;
+    padding: 3%;
   }
 
-  .stats{
-    font-size: 1.5em;
+  .stats1{
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+  }
+
+  .stats {
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
   }
 
   .testButton {
     display: inline-block;
-    width: auto;
-    text-align: center;
+    width: 10%;
     padding: 10px 20px;
     background-color: blue;
     color: white;
@@ -111,6 +124,8 @@ body {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .testButton:hover {
@@ -132,11 +147,24 @@ body {
     padding: 1em;
   }
 
-  .green {
+  .red {
+    background-color: rgba(225, 0, 0, 0.5);
+    border-radius: 1rem;
+    padding: 1em;
+  }
+
+  .green { 
     background-color: rgba(0, 128, 0, 0.5);
     border-radius: 1rem;
     padding: 1em;
   }
+
+  .green2 {
+      background-color: rgba(0, 128, 0, 0.5);
+      border-radius: 2rem;
+      box-shadow: 0 0 0 10px rgba(0, 128, 0, 0.5);
+  }
+    
 
   .H{
     display: none;
@@ -161,3 +189,27 @@ body {
     width: 100%;
   }
 
+  .mainQ {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    word-spacing: 0.15em;
+    margin-bottom: 2%;
+  }
+
+  #strong {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  
+  .strong2 {
+    font-weight: 700;
+  }
+
+  .answers {
+    margin-left: 5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    word-spacing: 0.10em;
+  }

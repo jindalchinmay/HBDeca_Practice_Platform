@@ -19,9 +19,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@600&family=DM+Serif+Text&family=Gothic+A1:wght@200;300;400;500;600;700;800;900&family=IBM+Plex+Sans:wght@100;200;300;400;600&family=Lato:wght@300;400;700&family=Montserrat:wght@200;300;400;500;600;800&family=Unna:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 
@@ -89,13 +89,13 @@
 
     <section class="choiceCard">
       <div class="title">
-        <h1>Test</h1>
-        <h4>Choose a cluster to start the test</h4>
+        <h1 class="testHeading">Test</h1>
+        <h4 class="chooseOption">Choose a cluster to start the test</h4>
       </div>
       <form method="POST" action="/choice" class="formClass">
         <div class="clusters">
           <div>
-            <label for="cluster">Cluster:</label>
+            <label id="clusterLabel" for="cluster">Cluster:</label>
             <select id="cluster" name="cluster" required>
               <option value="BA">Business Administration</option>
               <option value="Entrepreneurship">Entrepreneurship</option>
@@ -109,7 +109,7 @@
         </div>
         <div class="numberofQuestions">
           <div>
-            <label for="question">Number of Questions:</label>
+            <label id="questionLabel" for="question">Number of Questions:</label>
             <select id="question" name="question" required>
               <option value="5">5</option>
               <option value="10">10</option>
@@ -122,20 +122,20 @@
 
         <div class="time">
           <div>
-            <label for="timeLimit">Time Limit:</label>
+            <label id="limitLabel" for="timeLimit">Time Limit:</label>
           </div>
           <div class="timeLabel">
             <input type="radio" id="timed" name="timeLimit" value="timed" required>
-            <label for="timed">Timed</label>
+            <label class="options" for="timed">Timed</label>
           </div>
           <div>
             <input type="radio" id="noTime" name="timeLimit" value="none" required>
-            <label for="noTime">No Time</label>
+            <label class="options" for="noTime">No Time</label>
           </div>
         </div>
 
         <div class="buttonForChoice">
-          <button id="buttonForChoice" type="submit">Start</button>
+          <button class="testButton" type="submit">Start</button>
         </div>
       </form>
     </section>
