@@ -14,7 +14,7 @@ const speakeasy = require('speakeasy'); //verification token
 const querystring = require('querystring');
 const { time } = require('console');
 const app = express();
-const port = const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
