@@ -1,134 +1,201 @@
-  /* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
-  html, body {
-    height: 100%;
-  }
-  
+
+.encapsule{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  float: right;
+  padding-bottom: 4em;
+}
+
   body {
     margin: 0;
     padding: 0;
     min-height: 100%;
     background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);}
-  
+
   .body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
+
     /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
-  
-  
-  
-   
+
+
+
+
        /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
-  
-  .sidebarDECA {
-    display: hidden !important;
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: black; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-    font-family: 'Gothic A1', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
-  
+       .sidebarDECA {
+        height: 100%; /* 100% Full-height */
+        width: 20% !important; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0;
+        left: 0;
+        background-color: black; /* Black*/
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 60px; /* Place content 60px from the top */
+        transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+        font-family: 'Gothic A1', sans-serif;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
   /* add margin of 4px to .signOut */
-  
-  
-  
+
+
+
   .fs-4 {
     margin-top: 2%;
   }
-  
+
   .signOut {
     margin-left: 10%;
   }
    /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
-  
-  
-  
+
+
+
   /* <!________________________________________ NAME CHANGE STARTS __________________________________________-> */
   .nameChange {
-    width: 70%;
     background-color: white;
-    float: right;
-    margin-right: 5%;
+    width: 80%;
     border-radius: 20px;
     margin-top: 5%;
+    /* make it flex column and center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .nameChangeTitle {
     padding: 2%;
   }
-  
+
   .userNameChange {
-    padding-left: 3%;
     padding-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .nameChangeLabel{
+    /* make all elements on the same inline */
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #newName{
+    margin-left: 2%;
+    border: 1px solid black;
+    border-radius: 2px;
+  }
+
+  .nameChangeButton {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: auto;
+    text-align: center;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  .nameChangeButton:hover {
+    background-color: darkblue;
+  }
+
+  .nameChangeButton:active {
+    transform: scale(0.95);
   }
   /* <!________________________________________ NAME CHANGE ENDS __________________________________________-> */
+  .stats{
+    width: 70%;
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+  }
+
   .numOfRight {
     width: 70%;
     background-color: white;
     float: right;
-    margin-right: 5%;
     border-radius: 20px;
     margin-top: 2%;
+    display: flex;
+    justify-content: space-between
   }
-  
+
+
   .headingForRightQuestionCounter {
     padding: 2%;
   }
-  
+
   .numOfWrong {
     width: 70%;
     background-color: white;
     float: right;
-    margin-right: 5%;
+
     border-radius: 20px;
     margin-top: 2%;
+    display: flex;
+    justify-content: space-between
   }
-  
+
   .headingForWrongQuestionCounter {
     padding: 2%;
   }
-  
+
   .numOfTotalQ {
     width: 70%;
     background-color: white;
     float: right;
-    margin-right: 5%;
     border-radius: 20px;
     margin-top: 2%;
+    display: flex;
+    justify-content: space-between
   }
-  
+
   .headingForTotalQuestionCounter {
     padding: 2%;
   }
-  
+
   /* <!________________________________________ Question Statistics Ends __________________________________________-> */
-  
-  
+
+
   /* <!________________________________________ Line Graph Starts __________________________________________-> */
   #graph-container {
-    width: 70%;
-    background-color: rgb(236, 235, 235);
-    float: right;
-    margin-right: 5%;
+    width: 100%;
+    background-color: white;
+
     border-radius: 20px;
-    margin-top: 2%;
-    height: 50%;
+    height: 100%;
     margin-bottom: 5%;
+    padding: 2em !important;
   }
-  
-  
+
+  .lineGraph{
+    margin-top: 2%;
+    width: 90%;
+    border-radius: 20px;
+    height: auto;
+    background-color: white;
+
+  }
+
+
   /* <!________________________________________ Line Graph Ends __________________________________________-> */
-  

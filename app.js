@@ -406,6 +406,7 @@ app.post("/choice", async (req, res) => {
     return hundredQuestions;
   };
 
+
   questionsToRender = await populateQuestions();
   const time = new Date().getTime();
   console.log(time)
