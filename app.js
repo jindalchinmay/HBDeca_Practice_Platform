@@ -146,46 +146,47 @@ app.get('/auth/google/callback',
 
 app.get("/landing-page", async (req, res) => {
 
-  try{
-  res.set(
-    'Cache-Control',
-    'no-cache, private, no-store, must-revalidate, max-stal e=0, post-check=0, pre-check=0'
-  );
+  try {
+    res.set(
+      'Cache-Control',
+      'no-cache, private, no-store, must-revalidate, max-stal e=0, post-check=0, pre-check=0'
+    );
 
-  if (req.isAuthenticated()) {
-    //console.log(req.user)
-    const client = await User.find({ email: req.user.email }).exec();
-    const clientname = client[0].displayName
+    var auth = await req.isAuthenticated();
+
+    if (auth) {
+      const client = await User.find({ email: req.user.email }).exec();
+      const clientname = client[0].displayName
 
 
-    const questionsCorrect = client[0].userProfile.questionsCorrect;
-    const questionsWrong = client[0].userProfile.questionsWrong;
-    const totalQuestions = client[0].userProfile.questionsAttempted;
+      const questionsCorrect = client[0].userProfile.questionsCorrect;
+      const questionsWrong = client[0].userProfile.questionsWrong;
+      const totalQuestions = client[0].userProfile.questionsAttempted;
 
-    const wrongQArray = client[0].userProfile.wrongQuestions;
-    const randomIndex = Math.floor((Math.random() * wrongQArray.length));
-    const randomQ = wrongQArray[randomIndex];
+      const wrongQArray = client[0].userProfile.wrongQuestions;
+      const randomIndex = Math.floor((Math.random() * wrongQArray.length));
+      const randomQ = wrongQArray[randomIndex];
 
-    if(randomQ == undefined){
-      const questionRandom = "no question"
-      res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom});
-    } else{
-      const questionRandom = await mongoose.model(randomQ.db).find({ _id: randomQ.questionId }).exec();
-      res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom[0]});
+      if (randomQ == undefined) {
+        const questionRandom = "no question"
+        res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom });
+      } else {
+        const questionRandom = await mongoose.model(randomQ.db).find({ _id: randomQ.questionId }).exec();
+        res.render("landingpage", { username: getName(clientname), questionsCorrect: questionsCorrect, questionsIncorrect: questionsWrong, totalQuestions: totalQuestions, questionRandom: questionRandom[0] });
+      }
+    } else {
+      res.redirect("/login");
     }
 
-  } else {
-    res.redirect("/login");
+  } catch (error) {
+    console.log(error)
+    res.redirect("/")
   }
-} catch (error) {
-  console.log(error)
-  res.redirect("/")
-}
 });
 
 app.post("/more", (req, res) => {
-  try{
-  res.redirect("/choice");
+  try {
+    res.redirect("/choice");
   } catch (error) {
     console.log(error)
     res.redirect("/")
@@ -193,8 +194,9 @@ app.post("/more", (req, res) => {
 })
 
 app.get("/choice", async (req, res) => {
-  try{
-    if (req.isAuthenticated()) {
+  try {
+    var auth = await req.isAuthenticated();
+    if (auth) {
 
       client = await User.find({ email: req.user.email }).exec();
       clientname = client[0].displayName;
@@ -209,8 +211,9 @@ app.get("/choice", async (req, res) => {
 })
 
 app.get("/userInformation", async (req, res) => {
-  try{
-    if (req.isAuthenticated()) {
+  try {
+    var auth = await req.isAuthenticated();
+    if (auth) {
 
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName;
@@ -233,37 +236,38 @@ app.get("/userInformation", async (req, res) => {
 });
 
 app.get("/questions", async (req, res) => {
-try {
-    if (req.isAuthenticated()) {
+  try {
+    var auth = await req.isAuthenticated();
+    if (auth) {
 
-    try {
-      const numberofQuestions = JSON.parse(req.query.number)
-      const client = await User.find({ email: req.user.email }).exec()
-      const clientname = client[0].displayName;
-      const questionsId = JSON.parse(req.query.questionIds);
-      const db = JSON.parse(req.query.db);
+      try {
+        const numberofQuestions = JSON.parse(req.query.number)
+        const client = await User.find({ email: req.user.email }).exec()
+        const clientname = client[0].displayName;
+        const questionsId = JSON.parse(req.query.questionIds);
+        const db = JSON.parse(req.query.db);
 
-      const getQuestionsFromId = async () => {
-        questionsArray = [];
-        for (var i = 0; i < numberofQuestions; i++) {
-          const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
-          await questionsArray.push(questionFromDatabase[0]);
+        const getQuestionsFromId = async () => {
+          questionsArray = [];
+          for (var i = 0; i < numberofQuestions; i++) {
+            const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
+            await questionsArray.push(questionFromDatabase[0]);
+          }
+          return questionsArray;
         }
-        return questionsArray;
+
+        const questionsArrayfromID = await getQuestionsFromId();
+        const timer = JSON.parse(req.query.timer);
+        console.log()
+        res.render("questions",
+          { username: getName(clientname), questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer, time: JSON.parse(req.query.time) })
+
+      } catch (error) {
+        res.redirect("/choice");
       }
 
-      const questionsArrayfromID = await getQuestionsFromId();
-      const timer = JSON.parse(req.query.timer);
-      console.log()
-      res.render("questions",
-      { username: getName(clientname), questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer, time: JSON.parse(req.query.time)})
-
-    } catch (error) {
-      res.redirect("/choice");
-    }
-
     } else {
-    res.redirect("/login");
+      res.redirect("/login");
     }
   } catch (error) {
     console.log(error)
@@ -273,9 +277,10 @@ try {
 
 
 app.get("/submit", async (req, res) => {
-  try{
-    if (req.isAuthenticated()) {
-      try{
+  try {
+    var auth = await req.isAuthenticated();
+    if (auth) {
+      try {
         const client = await User.find({ email: req.user.email }).exec();
         const clientname = client[0].displayName;
 
@@ -297,9 +302,9 @@ app.get("/submit", async (req, res) => {
         const questionsArrayfromID = await getQuestionsFromId();
 
         await res.render("submit", { username: getName(clientname), questions: questionsArrayfromID, answers: userAnswers, number: number, results: results });
-    } catch (error) {
-      res.redirect("/choice")
-    }
+      } catch (error) {
+        res.redirect("/choice")
+      }
     } else {
       res.redirect("/login");
     }
@@ -310,7 +315,7 @@ app.get("/submit", async (req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-  try{
+  try {
     req.logout(() => {
       res.redirect('/');
     });
@@ -321,7 +326,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post("/l", (req, res) => {
-  try{
+  try {
     res.redirect("/login")
   } catch (error) {
     console.log(error)
@@ -330,7 +335,7 @@ app.post("/l", (req, res) => {
 })
 
 app.post("/questions", (req, res) => {
-  try{
+  try {
     const questionIdsArray = JSON.parse(req.body.questionIds);
     const number = JSON.parse(req.body.number);
     const db = JSON.parse(req.body.cluster);
@@ -413,7 +418,7 @@ app.post("/questions", (req, res) => {
 
 app.post("/choice", async (req, res) => {
 
-  try{
+  try {
     var cluster = req.body.cluster;
     var questionNumbers = req.body.question;
     var timeLimit = req.body.timeLimit;
@@ -471,7 +476,7 @@ app.post("/choice", async (req, res) => {
 })
 
 app.post("/done", (req, res) => {
-  try{
+  try {
     res.redirect("/landing-page")
   }
   catch (error) {
@@ -483,7 +488,7 @@ app.post("/done", (req, res) => {
 
 
 app.post("/userInformation", async (req, res) => {
-  try{
+  try {
     const newName = req.body.newName
 
     await User.findOneAndUpdate({ email: req.user.email }, { displayName: newName })
