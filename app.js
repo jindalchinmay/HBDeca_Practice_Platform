@@ -137,6 +137,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+    req.authenticate = true;
     req.session.save(() => {
       res.redirect('/landing-page');
     });
@@ -154,7 +155,7 @@ app.get("/landing-page", async (req, res) => {
 
     var auth = await req.isAuthenticated();
 
-    if (auth) {
+    if (req.authenticate) {
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName
 
@@ -196,7 +197,7 @@ app.post("/more", (req, res) => {
 app.get("/choice", async (req, res) => {
   try {
     var auth = await req.isAuthenticated();
-    if (auth) {
+    if (req.authenticate) {
 
       client = await User.find({ email: req.user.email }).exec();
       clientname = client[0].displayName;
@@ -213,7 +214,7 @@ app.get("/choice", async (req, res) => {
 app.get("/userInformation", async (req, res) => {
   try {
     var auth = await req.isAuthenticated();
-    if (auth) {
+    if (req.authenticate) {
 
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName;
@@ -238,7 +239,7 @@ app.get("/userInformation", async (req, res) => {
 app.get("/questions", async (req, res) => {
   try {
     var auth = await req.isAuthenticated();
-    if (auth) {
+    if (req.authenticate) {
 
       try {
         const numberofQuestions = JSON.parse(req.query.number)
@@ -279,7 +280,7 @@ app.get("/questions", async (req, res) => {
 app.get("/submit", async (req, res) => {
   try {
     var auth = await req.isAuthenticated();
-    if (auth) {
+    if (req.authenticate) {
       try {
         const client = await User.find({ email: req.user.email }).exec();
         const clientname = client[0].displayName;
@@ -316,6 +317,7 @@ app.get("/submit", async (req, res) => {
 
 app.get('/logout', (req, res) => {
   try {
+    req.authenticate = false;
     req.logout(() => {
       res.redirect('/');
     });
