@@ -136,12 +136,10 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
+  async (req, res) => {
 
-    req.session.save(() => {
-      req.session.authenticate = req.isAuthenticated();
+      req.session.authenticate = await req.isAuthenticated();
       res.redirect('/landing-page');
-    });
   }
 );
 
