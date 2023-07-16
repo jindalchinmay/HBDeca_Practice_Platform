@@ -14,7 +14,7 @@ const speakeasy = require('speakeasy'); //verification token
 const querystring = require('querystring');
 const { time } = require('console');
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -118,8 +118,6 @@ app.get("/", (req, res) => {
   res.render("homePage", {});
 });
 
-
-
 app.get("/login", (req, res) => {
   try {
     if (req.isAuthenticated()) {
@@ -139,8 +137,9 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // Successful authenlogouttication, redirect to profile page
-    res.redirect('/landing-page');
+    req.session.save(() => {
+      res.redirect('/landing-page');
+    });
   }
 );
 
