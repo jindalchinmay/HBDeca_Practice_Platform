@@ -136,10 +136,12 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
-  async (req, res) => {
+  (req, res) => {
 
-      req.session.authenticate = true;
+      req.session.save(() => {
+
       res.redirect('/landing-page');
+      });
   }
 );
 
@@ -153,7 +155,7 @@ app.get("/landing-page", async (req, res) => {
     );
 
 
-    if (req.session.authenticate) {
+    if (req.isAuthenticated()) {
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName
       console.log(req);
@@ -194,7 +196,7 @@ app.post("/more", (req, res) => {
 
 app.get("/choice", async (req, res) => {
   try {
-    if (req.session.authenticate) {
+    if (req.isAuthenticated()) {
 
       client = await User.find({ email: req.user.email }).exec();
       clientname = client[0].displayName;
@@ -210,7 +212,7 @@ app.get("/choice", async (req, res) => {
 
 app.get("/userInformation", async (req, res) => {
   try {
-    if (req.session.authenticate) {
+    if (req.isAuthenticated()) {
 
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName;
@@ -234,7 +236,7 @@ app.get("/userInformation", async (req, res) => {
 
 app.get("/questions", async (req, res) => {
   try {
-    if (req.session.authenticate) {
+    if (req.isAuthenticated()) {
 
       try {
         const numberofQuestions = JSON.parse(req.query.number)
@@ -274,7 +276,7 @@ app.get("/questions", async (req, res) => {
 
 app.get("/submit", async (req, res) => {
   try {
-    if (req.session.authenticate) {
+    if (req.isAuthenticated()) {
       try {
         const client = await User.find({ email: req.user.email }).exec();
         const clientname = client[0].displayName;
