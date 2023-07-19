@@ -138,7 +138,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   async (req, res) => {
 
-      req.session.authenticate = await req.isAuthenticated();
+      req.session.authenticate = true;
       res.redirect('/landing-page');
   }
 );
