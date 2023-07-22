@@ -14,15 +14,32 @@ const speakeasy = require('speakeasy'); //verification token
 const querystring = require('querystring');
 const { time } = require('console');
 const app = express();
+const MongoDBStore = require('connect-mongodb-session')(session);
 const port = process.env.PORT || 5000;
+
+const store = new MongoDBStore({
+  uri: 'mongodb+srv://aditymakkar000:kOOU9ol37umWyptp@tfssdecatest.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority',
+  collection: 'sessions', // Collection to store sessions
+});
+
+store.on('error', (error) => {
+  console.error('Session store error:', error);
+});
+
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store: store,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // Set a suitable session duration
+    },
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('public'));
@@ -149,6 +166,10 @@ app.get('/auth/google/callback',
 app.get("/landing-page", async (req, res) => {
 
   try {
+    res.set(
+      'Cache-Control',
+      'no-cache, private, no-store, must-revalidate, max-stal e=0, post-check=0, pre-check=0'
+    );
 
 
     if (req.isAuthenticated()) {
