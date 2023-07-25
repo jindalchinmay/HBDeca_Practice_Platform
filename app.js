@@ -18,7 +18,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const port = process.env.PORT || 5000;
 
 const store = new MongoDBStore({
-  uri: 'mongodb+srv://aditymakkar000:kOOU9ol37umWyptp@tfssdecatest.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority',
+  uri: 'mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority',
   collection: 'sessions', // Collection to store sessions
 });
 
