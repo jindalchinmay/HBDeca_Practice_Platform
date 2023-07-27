@@ -75,7 +75,7 @@ const EntrepreneurshipQuestion = mongoose.model("EntrepreneurshipQuestion", ques
 const FinanceQuestion = mongoose.model("FinanceQuestion", questionSchema);
 const HospitalityQuestion = mongoose.model("HospitalityQuestion", questionSchema);
 const MarketingQuestion = mongoose.model("MarketingQuestion", questionSchema);
-
+const PrincipleQuestion = mongoose.model("PrincipleQuestion", questionSchema);
 
 passport.use(
   new GoogleStrategy(
