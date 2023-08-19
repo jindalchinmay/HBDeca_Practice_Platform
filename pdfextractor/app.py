@@ -7,10 +7,12 @@ load_dotenv()
 
 client = pymongo.MongoClient('mongodb+srv://' + os.getenv('MONGODBIDENTIFICATION') + '.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority')
 db = client['TurnerFentonDECA']
-collection = db[('PrincipleQuestions'.lower())]
+collection = db[('entrepreneurshipquestions'.lower())]
 
 
-pdfReader = pdfExtractor("./PIN.pdf")
+pdfReader = pdfExtractor("./ENT.pdf")
+
+print("starting ...")
 
 for i in range(100):
     pdfReader.questions[i] = pdfReader.questions[i].replace("\n", "")
