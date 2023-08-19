@@ -108,7 +108,7 @@
       <h2 class="nameChangeTitle">Change Name</h2>
       <form class="userNameChange" method="post" action="/userInformation">
         <div class="nameChangeLabel">
-          <label id="labelForNewName" for="newName">New Name:</label>
+          <label id="labelForNewName" class="newName" for="newName">New Name:</label>
           <input type="text" id="newName" name="newName">
         </div>
         <button class="nameChangeButton" type="submit">Change Name</button>
@@ -118,18 +118,18 @@
     <!-- /* <!________________________________________ Question Stats STARTS __________________________________________-> */ -->
   <div class="stats">
     <div class="numOfRight">
-      <h2 class="headingForRightQuestionCounter">Number of Correct Questions:</h2>
-      <h2 class="headingForRightQuestionCounter"><%=questionsCorrect%></h2>
+      <h2 class="headingForRightQuestionCounter title1">Number of Correct Questions:</h2>
+      <h2 class="headingForRightQuestionCounter ans1"><%=questionsCorrect%></h2>
     </div>
 
     <div class="numOfWrong">
-      <h2 class="headingForWrongQuestionCounter">Number of Incorrect Questions:</h2>
-      <h2 class="headingForWrongQuestionCounter"> <%=questionsWrong%></h2>
+      <h2 class="headingForWrongQuestionCounter title1">Number of Incorrect Questions:</h2>
+      <h2 class="headingForWrongQuestionCounter ans1"> <%=questionsWrong%></h2>
     </div>
 
     <div class="numOfTotalQ">
-      <h2 class="headingForTotalQuestionCounter">Total Answered: </h2>
-      <h2 class="headingForTotalQuestionCounter"><%=totalQuestions%></h2>
+      <h2 class="headingForTotalQuestionCounter title1">Total Answered: </h2>
+      <h2 class="headingForTotalQuestionCounter ans1"><%=totalQuestions%></h2>
 
     </div>
   </div>
@@ -138,7 +138,7 @@
     <!-- /* <!________________________________________ LINE GRAPH STARTS __________________________________________-> */ -->
     <div class="lineGraph">
       <div id="graph-container">
-        <h1 style="text-align: center;">DECA Exam Scores</h1>
+        <h1 class="title1" style="text-align: center;">DECA Exam Scores</h1>
         <canvas id="lineGraph"></canvas>
       </div>
 
@@ -191,8 +191,9 @@
                             text: 'Test Number',
                             color: 'black',
                             font: {
-                                size: 14,
-                                weight: 'bold'
+                                family: 'Montserrat',
+                                size: 24,
+                                weight: 600
                             }
 
                         }
@@ -204,8 +205,9 @@
                             text: 'Percent',
                             color: 'black',
                             font: {
-                                size: 14,
-                                weight: 'bold'
+                                sfamily: 'Montserrat',
+                                size: 24,
+                                weight: 600
                             }
 
 

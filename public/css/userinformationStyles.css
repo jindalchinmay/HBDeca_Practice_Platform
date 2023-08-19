@@ -69,10 +69,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid rgba(73, 100, 151, 1) ; 
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1); 
   }
 
   .nameChangeTitle {
     padding: 2%;
+    font-family: 'Cabin', sans-serif;
   }
 
   .userNameChange {
@@ -81,6 +84,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    font-family: 'Montserrat', sans-serif;
   }
   .nameChangeLabel{
     /* make all elements on the same inline */
@@ -88,6 +92,11 @@
     flex-direction: row;
     width: 100%;
     justify-content: center;
+  }
+
+  .newName {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
   }
 
   #newName{
@@ -107,6 +116,7 @@
     background-color: blue;
     color: white;
     border: none;
+    font-weight: 600;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
@@ -121,13 +131,24 @@
   }
   /* <!________________________________________ NAME CHANGE ENDS __________________________________________-> */
   .stats{
-    width: 70%;
+    width: 80%;
     margin-top: 2%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     border-radius: 20px;
+    border: 2px solid rgba(73, 100, 151, 1) ; 
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1); 
+  }
+
+  .title1 {
+    font-family: 'Cabin', sans-serif;
+  }
+
+  .ans1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
   }
 
   .numOfRight {
@@ -178,14 +199,15 @@
 
 
   /* <!________________________________________ Line Graph Starts __________________________________________-> */
+  
   #graph-container {
     width: 100%;
     background-color: white;
-
     border-radius: 20px;
     height: 100%;
     margin-bottom: 5%;
     padding: 2em !important;
+    
   }
 
   .lineGraph{
@@ -194,7 +216,8 @@
     border-radius: 20px;
     height: auto;
     background-color: white;
-
+    border: 2px solid rgba(73, 100, 151, 1) ; 
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1); 
   }
 
 
