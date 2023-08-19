@@ -38,7 +38,6 @@
       font-size: 6.25rem;
       color: white;
       margin-top: 2%;
-      margin-bottom: 4%;
       font-family: 'DM Serif Text', serif;
       word-spacing: 20px;
       letter-spacing: 2px;
@@ -98,18 +97,45 @@
 /* <!___________________________________________________ Annoucement Div STARTS ________________________________________________> */
 .announcementDiv {
     background-color: rgb(253, 250, 250);
-    height: 300px;
+    height: auto;
+    padding: 3%;
   }
-
 
   .annoucementTitle {
     font-size: 3rem;
     font-family: 'Cabin', sans-serif;
-    padding: 2%;
     display: flex;
+    margin: 2%;
     justify-content: center;
     align-items: center;
   }
+
+
+  .dates {
+    margin: 3% 5% 3% 5%;
+    border-radius: 10px;
+    border: 2px solid rgba(73, 100, 151, 1) ;
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
+    height: auto;
+    padding: 4%;
+    background-color: #f8f8f8;
+   }
+
+   .dateHeading1{
+     font-size: 2rem;
+     font-family: 'Cabin', sans-serif;
+     color: rgb(51, 51, 51);
+     padding-bottom: 2%;
+   }
+
+   .dateDes {
+     font-family: 'Montserrat', sans-serif;
+     font-size: 1.2rem;
+   }
+
+
+
+
   /* <!___________________________________________________ Annoucement Div ENDS ________________________________________________> */
 
  /* <!-- ________________________________________________ Main page content starts ____________________________________________________ --> */
@@ -136,17 +162,21 @@
      width: 61%;
     height: auto;
     background-color: white;
-    padding: 15px;
+    padding: 2%;
     border-radius: 10px;
     margin-right: 4%;
+    border: 2px solid rgba(73, 100, 151, 1) ;
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
   }
 
   .incorrectQuestionCard {
-    margin: 0%;
+    padding: 4%;
+    font-family: 'Montserrat', sans-serif;
+
   }
 
   .IQGtitle{
-    margin-bottom: 5%;
+    font-family: 'Cabin', sans-serif;
   }
 
   .incButton {
@@ -178,6 +208,10 @@
     height: auto;
     background-color: white;
     border-radius: 20px;
+    border-radius: 10px;
+    margin-right: 4%;
+    border: 2px solid rgba(73, 100, 151, 1) ;
+    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
   }
 
   .container2 {
