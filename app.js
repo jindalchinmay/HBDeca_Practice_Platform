@@ -135,6 +135,10 @@ app.get("/", (req, res) => {
   res.render("homePage", {});
 });
 
+app.get("/loaderio-e75f54fc3669ca0b25c2cab5e6d80e02.txt", (req, res) => {
+  res.sendFile(__dirname + "/loaderio-e75f54fc3669ca0b25c2cab5e6d80e02.txt");
+});
+
 app.get("/login", (req, res) => {
   try {
     if (req.isAuthenticated()) {

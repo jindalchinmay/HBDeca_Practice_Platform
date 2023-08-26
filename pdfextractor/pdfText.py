@@ -1,7 +1,7 @@
 import PyPDF2
 
 class pdfExtractor:
-
+  
   def __init__(self, path):
     self.pdf_file = open(path, 'rb')
     self.pdf_reader = PyPDF2.PdfReader(self.pdf_file)
@@ -154,7 +154,3 @@ class pdfExtractor:
                 prevNumber = int(text[i-4] + text[i-3])
                 startOfAnswer = False
     return correctOptions
-
-
-
-

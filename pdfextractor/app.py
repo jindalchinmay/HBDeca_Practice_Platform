@@ -9,7 +9,6 @@ client = pymongo.MongoClient('mongodb+srv://' + os.getenv('MONGODBIDENTIFICATION
 db = client['TurnerFentonDECA']
 collection = db[('entrepreneurshipquestions'.lower())]
 
-
 pdfReader = pdfExtractor("./ENT.pdf")
 
 print("starting ...")
