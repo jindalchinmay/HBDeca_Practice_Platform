@@ -48,7 +48,8 @@ app.use(express.static('public'));
 mongoose.connect('mongodb+srv://' + process.env.MONGODBIDENTIFICATION + '.vtqujxr.mongodb.net/TurnerFentonDECA?retryWrites=true&w=majority')
   .then(() => {
     console.log("Connected to the database");
-    app.listen(port, () => console.log(`Express server listening ${port}.`));
+    app.listen(port, () =>
+    console.log(`Express server listening ${port}.`));
   })
   .catch(err => console.error(err));
 
@@ -147,7 +148,7 @@ app.get("/login", (req, res) => {
       res.redirect('/auth/google')
     }
   } catch (error) {
-    console.log(error)
+    ////console.log(error)
     res.redirect("/")
   }
 
@@ -179,7 +180,7 @@ app.get("/landing-page", async (req, res) => {
     if (req.isAuthenticated()) {
       const client = await User.find({ email: req.user.email }).exec();
       const clientname = client[0].displayName
-      console.log(req);
+      ////console.log(req);
 
       const questionsCorrect = client[0].userProfile.questionsCorrect;
       const questionsWrong = client[0].userProfile.questionsWrong;
@@ -201,7 +202,7 @@ app.get("/landing-page", async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 });
@@ -210,7 +211,7 @@ app.post("/more", (req, res) => {
   try {
     res.redirect("/choice");
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 })
@@ -226,7 +227,7 @@ app.get("/choice", async (req, res) => {
       res.redirect("/login");
     }
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 })
@@ -250,7 +251,7 @@ app.get("/userInformation", async (req, res) => {
       res.redirect("/login");
     }
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 });
@@ -277,7 +278,7 @@ app.get("/questions", async (req, res) => {
 
         const questionsArrayfromID = await getQuestionsFromId();
         const timer = JSON.parse(req.query.timer);
-        console.log()
+        //console.log()
         res.render("questions",
           { username: getName(clientname), questions: questionsArrayfromID, number: numberofQuestions, cluster: db, timerBoolean: timer, time: JSON.parse(req.query.time) })
 
@@ -289,7 +290,7 @@ app.get("/questions", async (req, res) => {
       res.redirect("/login");
     }
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/homePage");
   }
 })
@@ -327,7 +328,7 @@ app.get("/submit", async (req, res) => {
       res.redirect("/login");
     }
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 })
@@ -338,7 +339,7 @@ app.get('/logout', (req, res) => {
       res.redirect('/');
     });
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 });
@@ -347,7 +348,7 @@ app.post("/l", (req, res) => {
   try {
     res.redirect("/login")
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.redirect("/")
   }
 })
@@ -359,7 +360,7 @@ app.post("/questions", (req, res) => {
     const db = JSON.parse(req.body.cluster);
     const questionsAnswers = [];
 
-    console.log(req.body)
+    //console.log(req.body)
 
     function getUserAnswers(request) {
       var userAnswers = [];
@@ -408,7 +409,7 @@ app.post("/questions", (req, res) => {
           results.wrongQuestions.forEach((question) => {
             userProfileNew.wrongQuestions.push({ questionId: question, db: db });
           })
-          //console.log(userProfileNew)
+          ////console.log(userProfileNew)
           await User.findOneAndUpdate({ email: req.user.email }, { userProfile: userProfileNew })
         }
 
@@ -429,7 +430,7 @@ app.post("/questions", (req, res) => {
         res.redirect("/landing-page")
       });
   } catch (error) {
-    console.log(error)
+    //////console.log(error)
     res.redirect("/")
   }
 })
@@ -459,26 +460,31 @@ app.post("/choice", async (req, res) => {
     var length = await mongoose.model(db).estimatedDocumentCount();
     const questions = await mongoose.model(db).find({}).exec();
 
+
     const populateQuestions = async () => {
       const hundredQuestions = [];
+      var count = 0;
       chosen = [];
       for (var i = 0; i < questionNumbers; i++) {
         randomNumber = getRandomNumber(0, length - 1);
+        count++;
         var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
         while (numberChosen) {
           randomNumber = getRandomNumber(0, length - 1);
+          count++;
           numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
         }
         chosen.push(randomNumber);
         hundredQuestions.push(questions[randomNumber]._id);
       }
+      //////console.log(count)
       return hundredQuestions;
     };
 
 
     questionsToRender = await populateQuestions();
     const time = new Date().getTime();
-    console.log(time)
+    //////console.log(time)
     const queryParams = querystring.stringify({
       questionIds: JSON.stringify(questionsToRender),
       number: JSON.stringify(questionNumbers),
@@ -488,7 +494,7 @@ app.post("/choice", async (req, res) => {
     })
     res.redirect("/questions?" + queryParams);
   } catch (error) {
-    console.log(error)
+    ////console.log(error)
     res.redirect("/")
   }
 })
@@ -498,7 +504,7 @@ app.post("/done", (req, res) => {
     res.redirect("/landing-page")
   }
   catch (error) {
-    console.log(error)
+    ////console.log(error)
     res.redirect("/")
   }
 })
@@ -515,7 +521,7 @@ app.post("/userInformation", async (req, res) => {
         res.redirect("/userInformation");
       });
   } catch (error) {
-    console.log(error)
+    ////console.log(error)
     res.redirect("/")
   }
 })

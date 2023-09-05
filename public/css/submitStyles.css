@@ -44,7 +44,19 @@ body {
 
   /* add margin of 4px to .signOut */
 
+  .signoutList{
+    display: flex;
+    justify-content: center;
+  }
 
+  .submitButton{
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align the text */
+    text-align: center;
+  }
 
   .fs-4 {
     margin-top: 2%;
@@ -153,7 +165,7 @@ body {
     padding: 1em;
   }
 
-  .green { 
+  .green {
     background-color: rgba(0, 128, 0, 0.5);
     border-radius: 1rem;
     padding: 1em;
@@ -164,7 +176,7 @@ body {
       border-radius: 2rem;
       box-shadow: 0 0 0 10px rgba(0, 128, 0, 0.5);
   }
-    
+
 
   .H{
     display: none;
@@ -201,7 +213,7 @@ body {
     font-weight: 700;
     font-size: 1rem;
   }
-  
+
   .strong2 {
     font-weight: 700;
   }

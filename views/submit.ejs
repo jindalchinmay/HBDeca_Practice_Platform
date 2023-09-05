@@ -6,6 +6,7 @@
     <title>Turner Fenton DECA</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/submitStyles.css">
+    <link rel="icon" href="decaLogo.png">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -80,8 +81,7 @@
           aria-labelledby="dropdownUser1">
           <!-- wrap button in link to logout with no styles -->
           <li>
-            <a id="logout" href="/logout"><button type="submit"
-                class="button-link signOut">Sign Out</button></a>
+            <a id="logout" href="/logout"><button type="submit" class="btn btn-primary submitButton">Sign Out</button></a>
           </li>
 
         </ul>
@@ -110,7 +110,7 @@
           </div>
         <hr>
         </div>
-   
+
 
         <form id="testForm" action="/done" method="post">
 
@@ -118,7 +118,7 @@
 
           <div class="questionCard">
 
-            <h6 
+            <h6
               class="<%= questions[i].Answer === answers[i] ? 'green' : 'red' %> mainQ">
               <strong id="strong"><em><%= i+1 %>.</em></strong> <%=questions[i].Question %></h6>
             <button class="dropdownToggle" type="button">
@@ -169,7 +169,7 @@
               </label>
               <br>
             </div>
-          
+
           </div>
           <% } %>
           <button type="submit" class="testButton"> Home </button>

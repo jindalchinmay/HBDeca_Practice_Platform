@@ -58,6 +58,19 @@
       font-weight: 500;
       letter-spacing: 0.5px;
     }
+    .signoutList{
+      display: flex;
+      justify-content: center;
+    }
+
+    .submitButton{
+      height: 2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* align the text */
+      text-align: center;
+    }
 
   .encapsule{
     display: flex !important;
@@ -162,13 +175,13 @@
     transform: translateY(4px);
   }
 
-  #cluster { 
-    font-family: 'Montserrat', sans-serif; 
+  #cluster {
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
   }
 
   #question {
-    font-family: 'Montserrat', sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.25rem;
   }
 
@@ -245,6 +258,6 @@
   }
 
 .options {
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.5rem;
 }
