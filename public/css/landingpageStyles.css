@@ -1,292 +1,292 @@
 /* <!-- ________________________________________ BODY STYLING STARTS ________________________________________________ --> */
 
+.encapsule {
+  display: flex !important;
+  flex-direction: column;
+  width: 80%;
+  float: right;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(35, 58, 103, 1) 0,
+    rgba(73, 100, 151, 1) 100vw
+  );
+}
 
-  .encapsule{
-    display: flex !important;
-    flex-direction: column;
-    width: 80%;
-    float: right;
-    background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
 
-  }
+.landingSection1 {
+  display: flex;
+  flex-direction: column; /* Added property */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(35, 58, 103, 1) 0,
+    rgba(73, 100, 151, 1) 100vw
+  );
+}
 
+.signoutList {
+  display: flex;
+  justify-content: center;
+}
 
-  .body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.submitButton {
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* align the text */
+  text-align: center;
+}
 
-    /* <!-- ________________________________________ BODY STLYING ENDS ________________________________________________ --> */
+.title1 {
+  height: 20%;
+}
 
-    .landingSection1 {
-      display: flex;
-      flex-direction: column; /* Added property */
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
-    }
+.landingPageTitle {
+  font-size: 6.25rem;
+  color: white;
+  margin-top: 2%;
+  font-family: "DM Serif Text", serif;
+  word-spacing: 20px;
+  letter-spacing: 2px;
+}
 
-    .signoutList{
-      display: flex;
-      justify-content: center;
-    }
-
-    .submitButton{
-      height: 2em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /* align the text */
-      text-align: center;
-    }
-
-    .title1{
-      height: 20%;
-    }
-
-    .landingPageTitle {
-      font-size: 6.25rem;
-      color: white;
-      margin-top: 2%;
-      font-family: 'DM Serif Text', serif;
-      word-spacing: 20px;
-      letter-spacing: 2px;
-    }
-
-    #execTeamImg {
-      z-index: 2;
-      width: 50vw;
-      height: auto;
-      /* make the image in a square shape */
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;
-      border: 3.5px solid white;
-      box-shadow: 0 0 45px white;
-      margin-bottom: 3em;
-      margin-top: 2em;
-    }
+#execTeamImg {
+  z-index: 2;
+  width: 50vw;
+  height: auto;
+  /* make the image in a square shape */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  border: 3.5px solid white;
+  box-shadow: 0 0 45px white;
+  margin-bottom: 3em;
+  margin-top: 2em;
+}
 
 /* <!_________________________________________________ TITLEBAR ENDS ________________________________________________>
 
   /* <!-- ________________________________________________ SIDEBAR STARTS ____________________________________________________ --> */
 
-  .sidebarDECA {
-    height: 100%; /* 100% Full-height */
-    width: 20% !important; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0;
-    left: 0;
-    background-color: black; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
-    font-family: 'Gothic A1', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-  }
+.sidebarDECA {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 20% !important; /* 0 width - change this with JavaScript */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black; /* Black*/
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  font-family: "Gothic A1", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
 
-  /* add margin of 4px to .signOut */
+/* add margin of 4px to .signOut */
 
-  .fs-4 {
-    margin-top: 2%;
-  }
+.fs-4 {
+  margin-top: 2%;
+}
 
-  .signOut {
-    margin-left: 10%;
-  }
-   /* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
-
-
-
+.signOut {
+  margin-left: 10%;
+}
+/* <!-- ________________________________________________ SIDEBAR ENDS ____________________________________________________ --> */
 
 /* <!___________________________________________________ Annoucement Div STARTS ________________________________________________> */
 .announcementDiv {
-    background-color: rgb(253, 250, 250);
-    height: auto;
-    padding: 3%;
-  }
+  background-color: rgb(253, 250, 250);
+  height: auto;
+  padding: 3%;
+}
 
-  .annoucementTitle {
-    font-size: 3rem;
-    font-family: 'Cabin', sans-serif;
-    display: flex;
-    margin: 2%;
-    justify-content: center;
-    align-items: center;
-  }
+.annoucementTitle {
+  font-size: 3rem;
+  font-family: "Cabin", sans-serif;
+  display: flex;
+  margin: 2%;
+  justify-content: center;
+  align-items: center;
+}
 
+.dates {
+  margin: 3% 5% 3% 5%;
+  border-radius: 10px;
+  border: 2px solid rgba(73, 100, 151, 1);
+  box-shadow: 0 0 20px rgba(73, 100, 151, 1);
+  height: auto;
+  padding: 4%;
+  background-color: #f8f8f8;
+}
 
-  .dates {
-    margin: 3% 5% 3% 5%;
-    border-radius: 10px;
-    border: 2px solid rgba(73, 100, 151, 1) ;
-    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
-    height: auto;
-    padding: 4%;
-    background-color: #f8f8f8;
-   }
+.dateHeading1 {
+  font-size: 2rem;
+  font-family: "Cabin", sans-serif;
+  color: rgb(51, 51, 51);
+  padding-bottom: 2%;
+}
 
-   .dateHeading1{
-     font-size: 2rem;
-     font-family: 'Cabin', sans-serif;
-     color: rgb(51, 51, 51);
-     padding-bottom: 2%;
-   }
+.dateDes {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+}
 
-   .dateDes {
-     font-family: 'Montserrat', sans-serif;
-     font-size: 1.2rem;
-   }
+/* <!___________________________________________________ Annoucement Div ENDS ________________________________________________> */
 
+/* <!-- ________________________________________________ Main page content starts ____________________________________________________ --> */
+.mainContentContainer {
+  display: flex;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(35, 58, 103, 1) 0,
+    rgba(73, 100, 151, 1) 100vw
+  );
+  padding: 4em;
 
+}
 
+.IQGtitle {
+  font-family: "Cabin", sans-serif;
+  padding-left: 4%;
+}
+/* <!------------------------- Incorrect Q STARTS ---------------------------> */
 
-  /* <!___________________________________________________ Annoucement Div ENDS ________________________________________________> */
+.inline-label {
+  display: flex;
+}
 
- /* <!-- ________________________________________________ Main page content starts ____________________________________________________ --> */
- .mainContentContainer {
-    display: flex;
-    background-image: repeating-linear-gradient(to right, rgba(35, 58, 103, 1) 0, rgba(73, 100, 151, 1) 100vw);
-    padding: 4em;
-  }
+.noQuestionCard {
+  /* make items centers in the div */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* make it centered from the top */
+  margin-top: 10%;
+  /* make it centered from the left */
+}
 
-  .IQGtitle {
-    font-family: 'Cabin', sans-serif;
-    padding-left: 4%;
-  }
-        /* <!------------------------- Incorrect Q STARTS ---------------------------> */
+.incorrectQuestionGenerator {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 61%;
+  height: auto;
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
+  margin-right: 4%;
+  border: 2px solid rgba(73, 100, 151, 1);
+  box-shadow: 0 0 20px rgba(73, 100, 151, 1);
+}
 
-    .inline-label{
-      display: flex;
-    }
+.incorrectQuestionCard {
+  padding: 4%;
+  font-family: "Montserrat", sans-serif;
+}
 
-    .noQuestionCard{
-      /* make items centers in the div */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      /* make it centered from the top */
-      margin-top: 10%;
-      /* make it centered from the left */
-    }
+.IQGtitle {
+  font-family: "Cabin", sans-serif;
+}
 
-  .incorrectQuestionGenerator {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-     width: 61%;
-    height: auto;
-    background-color: white;
-    padding: 2%;
-    border-radius: 10px;
-    margin-right: 4%;
-    border: 2px solid rgba(73, 100, 151, 1) ;
-    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
-  }
+.incButton {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .incorrectQuestionCard {
-    padding: 4%;
-    font-family: 'Montserrat', sans-serif;
+.incButton2 {
+  margin-top: 3%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
+.correct-answer {
+  background-color: #c1e7c3; /* Set the desired background color for the correct answer */
+}
 
-  .IQGtitle{
-    font-family: 'Cabin', sans-serif;
-  }
+/* <!------------------------- Incorrect Q ENDS ---------------------------> */
 
-  .incButton {
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+/* <!------------------------- GRAPH STARTS ---------------------------> */
 
-  .incButton2 {
-    margin-top: 3%;
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.pieGraph {
+  display: inline-flex;
+  width: 35%;
+  height: auto;
+  background-color: white;
+  border-radius: 20px;
+  border-radius: 10px;
+  margin-right: 4%;
+  border: 2px solid rgba(73, 100, 151, 1);
+  box-shadow: 0 0 20px rgba(73, 100, 151, 1);
+}
 
-  .correct-answer {
-    background-color: #c1e7c3; /* Set the desired background color for the correct answer */
-  }
+.container2 {
+  width: auto;
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
+  max-width: 100%;
+  max-height: 100%;
+}
 
-         /* <!------------------------- Incorrect Q ENDS ---------------------------> */
+#doughnutChart {
+  background-color: white;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: 20px;
+  padding: 2%;
+}
 
-          /* <!------------------------- GRAPH STARTS ---------------------------> */
+.statisticsTitle {
+  font-family: "Cabin", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1%;
+}
 
-  .pieGraph {
-    display: inline-flex;
-    width: 35%;
-    height: auto;
-    background-color: white;
-    border-radius: 20px;
-    border-radius: 10px;
-    margin-right: 4%;
-    border: 2px solid rgba(73, 100, 151, 1) ;
-    box-shadow: 0 0 20px rgba(73, 100, 151, 1);
-  }
+/* <!------------------------- GRAPH ENDS ---------------------------> */
 
-  .container2 {
-    width: auto;
-    display: flex;
-    height: auto;
-    flex-wrap: wrap;
-    max-width: 100%;
-    max-height: 100%;
-  }
+.questionCounter {
+  width: 24.5%;
+  height: auto;
+  background-color: white;
+  display: flex;
+  float: right;
+  margin-right: 5%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin-bottom: 5%;
+}
 
-  #doughnutChart {
-    background-color: white;
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    border-radius: 20px;
-    padding: 2%;
+.headingForQuestionCounter {
+  padding: 3% 2% 3% 2%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: "Cabin", sans-serif;
+  padding: 2%;
+}
 
-  }
-
-  .statisticsTitle {
-    font-family: 'Cabin', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 1%;
-  }
-
-          /* <!------------------------- GRAPH ENDS ---------------------------> */
-
-  .questionCounter {
-    width: 24.5%;
-    height: auto;
-    background-color: white;
-    display: flex;
-    float: right;
-    margin-right: 5%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    margin-bottom: 5%;
-  }
-
-  .headingForQuestionCounter {
-    padding: 3% 2% 3% 2%;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    font-family: 'Cabin', sans-serif;
-    padding: 2%;
-  }
-
-   /* <!-- ________________________________________________ Main page content ends ____________________________________________________ --> */
+/* <!-- ________________________________________________ Main page content ends ____________________________________________________ --> */
