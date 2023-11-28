@@ -3,3 +3,5 @@
 mailVerificationJson/*
 
 node_modules/*
+
+stats.py

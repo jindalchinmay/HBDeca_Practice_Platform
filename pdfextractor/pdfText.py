@@ -1,7 +1,7 @@
 import PyPDF2
 
 class pdfExtractor:
-  
+
   def __init__(self, path):
     self.pdf_file = open(path, 'rb')
     self.pdf_reader = PyPDF2.PdfReader(self.pdf_file)
@@ -17,6 +17,9 @@ class pdfExtractor:
     self.pdf_file.close()
 
   def getKeyPage(self):
+
+   for i in range(self.num_pages):
+     print(i)
    for page_number in range(1,self.num_pages):
     page = self.pdf_reader.pages[page_number]
     text = page.extract_text()
@@ -24,13 +27,14 @@ class pdfExtractor:
         if i < len(text)-3:
             if text[i] == "K" and text[i+1] == "E" and text[i + 2] == "Y":
                 keyPageIndex = page_number
+                print("Key Page Index: " + str(keyPageIndex))
                 return keyPageIndex
 
   def getQuestions(self):
     questions = []
     question = ""
     start_of_question = False
-    for page_number in range(1,self.keyPageIndex):
+    for page_number in range(0,self.keyPageIndex):
       page = self.pdf_reader.pages[page_number]
       text = page.extract_text()
       for i in range(len(text)):
