@@ -220,8 +220,8 @@ app.get("/choice", async (req, res) => {
   try {
     if (req.isAuthenticated()) {
 
-      client = await User.find({ email: req.user.email }).exec();
-      clientname = client[0].displayName;
+      let client = await User.find({ email: req.user.email }).exec();
+      let clientname = client[0].displayName;
       res.render("clusters", { username: getName(clientname) })
     } else {
       res.redirect("/login");
@@ -268,7 +268,7 @@ app.get("/questions", async (req, res) => {
         const db = JSON.parse(req.query.db);
 
         const getQuestionsFromId = async () => {
-          questionsArray = [];
+          let questionsArray = [];
           for (var i = 0; i < numberofQuestions; i++) {
             const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
             await questionsArray.push(questionFromDatabase[0]);
@@ -303,18 +303,18 @@ app.get("/submit", async (req, res) => {
         const client = await User.find({ email: req.user.email }).exec();
         const clientname = client[0].displayName;
 
-        questionsId = JSON.parse(req.query.questionIds);
-        userAnswers = JSON.parse(req.query.userAnswers);
-        number = JSON.parse(req.query.number);
-        db = JSON.parse(req.query.db);
-        results = JSON.parse(req.query.results);
+        let questionsId = JSON.parse(req.query.questionIds);
+        let userAnswers = JSON.parse(req.query.userAnswers);
+        let number = JSON.parse(req.query.number);
+        let db = JSON.parse(req.query.db);
+        let results = JSON.parse(req.query.results);
 
         const getQuestionsFromId = async () => {
-          questionsArray = [];
+          let questionsArray = [];
 
           for (var i = 0; i < number; i++) {
             const questionFromDatabase = await mongoose.model(db).find({ _id: questionsId[i] }).exec();
-            await questionsArray.push(questionFromDatabase[0]);
+            await questionsArray.push(questionFromDatabase[0] as any);
           }
           return questionsArray;
         }
@@ -392,12 +392,12 @@ app.post("/questions", (req, res) => {
       return mongoose.model(db).findById(id, 'Answer').exec();
     }))
       .then((results) => {
-        results.forEach((question) => {
+        results.forEach((question: { Answer: any }) => {
           questionsAnswers.push(question.Answer);
         });
 
         const userAnswers = getUserAnswers(req.body);
-        var results = checkAnswers(userAnswers, questionsAnswers);
+        var results: { correct: number; incorect: number; wrongQuestions: never[]; } = checkAnswers(userAnswers, questionsAnswers);
 
         async function updateUserStats(results) {
           var user = await User.find({ email: req.user.email }).exec()
@@ -441,7 +441,6 @@ app.post("/choice", async (req, res) => {
     var cluster = req.body.cluster;
     var questionNumbers = req.body.question;
     var timeLimit = req.body.timeLimit;
-    var questionsToRender = [];
 
     function getRandomNumber(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -462,15 +461,15 @@ app.post("/choice", async (req, res) => {
 
 
     const populateQuestions = async () => {
-      const hundredQuestions = [];
+      const hundredQuestions: number[] = [];
       var count = 0;
-      chosen = [];
+      let chosen: number[] = [];
       for (var i = 0; i < questionNumbers; i++) {
-        randomNumber = getRandomNumber(0, length - 1);
+        let randomNumber = getRandomNumber(0, length - 1);
         count++;
         var numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
         while (numberChosen) {
-          randomNumber = getRandomNumber(0, length - 1);
+          let randomNumber = getRandomNumber(0, length - 1);
           count++;
           numberChosen = checkIfNumberIsInArray(randomNumber, chosen);
         }
@@ -482,7 +481,7 @@ app.post("/choice", async (req, res) => {
     };
 
 
-    questionsToRender = await populateQuestions();
+    let questionsToRender = await populateQuestions();
     const time = new Date().getTime();
     //////console.log(time)
     const queryParams = querystring.stringify({
