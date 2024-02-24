@@ -1,5 +1,5 @@
 # TurnerFentonDECA
-Turner Fenton DECA web applications for users. Currently in V0.1 - styling and core features to be updated.
+Turner Fenton DECA web applications for users. Currently in V0.1 - styling and core features are to be updated.
 
 Hosting domain: https://turnerfentondeca-7dol8.ondigitalocean.app/
 
