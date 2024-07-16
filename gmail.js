@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); // get gmail web client
 const { google } = require('googleapis');
 const MailComposer = require('nodemailer/lib/mail-composer');
 const credentials = JSON.parse(process.env.CREDENTIALS);
