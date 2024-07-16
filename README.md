@@ -1,8 +1,6 @@
 # Harold M. Brathwaite DECA
 Harold M. Brathwaite DECA web applications for users. Currently in V0.1 - styling and core features are to be updated. RAG implementation is currently under dev.
 
-Hosting domain: https://hbdeca-7dol8.ondigitalocean.app/
-
 # Walkthrough 
 
 When you open up the web app, follow the landing page instructions to log in via Google. Other authentication methods will be added in upcoming versions. There are currently 3 pages to best practice your DECA skills. On the home page, you will see upcoming announcements for the chapter as well as a random wrong question from before. You will also see a pie graph with your statistics.
