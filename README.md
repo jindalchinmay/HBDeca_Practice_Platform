@@ -1,7 +1,7 @@
-# TurnerFentonDECA
-Turner Fenton DECA web applications for users. Currently in V0.1 - styling and core features are to be updated.
+# Harold M. Brathwaite DECA
+Harold M. Brathwaite DECA web applications for users. Currently in V0.1 - styling and core features are to be updated. RAG implementation is currently under dev.
 
-Hosting domain: https://turnerfentondeca-7dol8.ondigitalocean.app/
+Hosting domain: https://hbdeca-7dol8.ondigitalocean.app/
 
 # Walkthrough 
 
