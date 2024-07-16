@@ -1,4 +1,4 @@
-function getName(name){
+function getName(name){ // to ensure only PDSB kids have access to this
   var finalName = "";
 
   for(var i = 0; i < name.length; i++){
